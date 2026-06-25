@@ -3,7 +3,7 @@
 ## Stato corrente
 
 - Versione attuale: `4.1.6`
-- Formato incrementale successivo: `4.1.6`, `4.1.7`, `4.1.8`, ...
+- Formato incrementale successivo: `4.1.7`, `4.1.8`, `4.1.9`, ...
 - Mese corrente di riferimento: `Giu 2026`
 
 ## Checklist
@@ -13,11 +13,12 @@
 3. Aggiornare i file `.md` rilevanti e il `README.md`.
    - Aggiornare `CHANGELOG.md` (non usare piu' `UPDATE_SUMMARY_*.md`).
 4. Aggiornare l'HTML guida utente (`Padel_ELO_Manager_Guida_V4.1.html`) e, se serve, esportarne il PDF aggiornato nella cartella alias/distribuzione.
-5. Aggiornare `DESIGN.md` e `REBUILD_BRIEF_FOR_AI.txt` se ci sono cambi architetturali o nuovi flussi importanti.
-6. Eseguire build di verifica.
-7. Creare backup `.zip` di ripristino.
-8. Creare dump `.txt` completo file-per-file del codice.
-9. Fare commit e push della versione locale corrente.
+5. Eseguire lo script `node scripts/generate-team-tournament-guide-pdf.mjs` per generare la guida in PDF aggiornata dei tornei a squadre, e rimuovere le vecchie versioni in `docs/`.
+6. Aggiornare `DESIGN.md` e `REBUILD_BRIEF_FOR_AI.txt` se ci sono cambi architetturali o nuovi flussi importanti.
+7. Eseguire build di verifica.
+8. Creare backup `.zip` di ripristino.
+9. Creare dump `.txt` completo file-per-file del codice.
+10. Fare commit e push della versione locale corrente.
 
 ## Note operative
 
