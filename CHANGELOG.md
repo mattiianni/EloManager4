@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.1.6 — 2026-06-25
+### Modifiche e Fix (HIG)
+- Completata traduzione in italiano di tutti i popup e dei messaggi di sistema residui (es. risultati, alert di salvataggio torneo, ecc.).
+- Risolto un difetto grafico sui popup `HIGSheet` in modalità mobile, aggiungendo padding interno (`px-4`) per evitare che testi e pulsanti toccassero i bordi dello schermo.
+- Ingrandito font dell'intestazione principale (Padel Elo Manager) di +4 step (a 20px) per una migliore leggibilità.
+- Eseguita profonda pulizia del repository rimuovendo oltre 45 script monouso temporanei.
+
 Questo file consolida gli storici precedentemente salvati come `UPDATE_SUMMARY_*.md`.
 
 ## v4.1.5 — 2026-06-19

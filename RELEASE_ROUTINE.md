@@ -2,7 +2,7 @@
 
 ## Stato corrente
 
-- Versione attuale: `4.1.5`
+- Versione attuale: `4.1.6`
 - Formato incrementale successivo: `4.1.6`, `4.1.7`, `4.1.8`, ...
 - Mese corrente di riferimento: `Giu 2026`
 
