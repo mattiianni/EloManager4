@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
         <header 
             className="sticky top-0 z-20 flex items-center justify-between px-4"
             style={{
-                height: 'calc(54px + env(safe-area-inset-top, 0px))', // Slightly taller to accommodate subtitle
+                height: 'calc(80px + env(safe-area-inset-top, 0px))', // Taller to accommodate larger logo and subtitle with padding
                 paddingTop: 'env(safe-area-inset-top, 0px)',
                 background: 'var(--ios-thickMaterial)',
                 backdropFilter: 'blur(40px)',
@@ -37,10 +37,19 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
 
             {/* Center Title & Subtitle */}
             <div className="flex-[2] flex flex-col items-center justify-center text-center">
-                <h1 className="sf-headline text-ios-label truncate w-full" style={{ fontSize: '20px', lineHeight: '24px' }}>
-                    Padel Elo Manager
-                </h1>
-                <div className="sf-caption2 text-ios-label-secondary truncate w-full mt-0.5" style={{ fontSize: '11px', lineHeight: '13px' }}>
+                <div className="flex justify-center items-center w-full mb-0.5">
+                    <img 
+                        src="/elomanager_w.png" 
+                        alt="Padel Elo Manager" 
+                        className="h-9 md:h-10 w-auto object-contain block dark:hidden" 
+                    />
+                    <img 
+                        src="/elomanager.png" 
+                        alt="Padel Elo Manager" 
+                        className="h-9 md:h-10 w-auto object-contain hidden dark:block" 
+                    />
+                </div>
+                <div className="sf-caption2 text-ios-label-secondary truncate w-full mt-0.5" style={{ fontSize: '13px', lineHeight: '15px' }}>
                     v{APP_VERSION} / {APP_MONTH}{workspace ? ` • ${workspace.name}` : ''}
                 </div>
             </div>

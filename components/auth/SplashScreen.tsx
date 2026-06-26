@@ -86,15 +86,16 @@ const SplashScreen: React.FC = () => {
             <div className="relative z-10 w-full max-w-[400px]">
                 <div className="fade-in rounded-3xl bg-[var(--ios-secondarySystemGroupedBackground)] p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.4)]">
                     <div className="mb-8 flex flex-col items-center text-center">
-                        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--ios-systemBlue)] shadow-sm">
-                            <MaterialIcon name="sports_tennis" filled className="text-[32px] text-white" />
-                        </div>
-                        <h1 className="text-2xl font-bold tracking-tight text-[var(--ios-label)]">
-                            Padel Elo Manager
-                        </h1>
-                        <p className="mt-2 text-xs font-semibold tracking-wider text-[var(--ios-secondaryLabel)] uppercase">
-                            Il tuo gestore di padel
-                        </p>
+                        <img 
+                            src="/elomanager_w.png" 
+                            alt="Padel Elo Manager" 
+                            className="w-96 max-w-full h-auto object-contain block dark:hidden" 
+                        />
+                        <img 
+                            src="/elomanager.png" 
+                            alt="Padel Elo Manager" 
+                            className="w-96 max-w-full h-auto object-contain hidden dark:block" 
+                        />
                     </div>
 
                     <div className="mb-4 text-center text-sm font-medium text-[var(--ios-secondaryLabel)]">
