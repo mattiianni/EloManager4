@@ -36,17 +36,17 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
             </div>
 
             {/* Center Title & Subtitle */}
-            <div className="flex-[2] flex flex-col items-center justify-center text-center pr-6 md:pr-0">
+            <div className="flex-[2] flex flex-col items-center justify-center text-center">
                 <div className="flex justify-center items-center w-full mb-0.5">
                     <img 
                         src="/elomanager_w.png" 
                         alt="Padel Elo Manager" 
-                        className="h-9 md:h-10 w-auto object-contain block dark:hidden" 
+                        className="h-8 md:h-10 w-auto object-contain block dark:hidden" 
                     />
                     <img 
                         src="/elomanager.png" 
                         alt="Padel Elo Manager" 
-                        className="h-9 md:h-10 w-auto object-contain hidden dark:block" 
+                        className="h-8 md:h-10 w-auto object-contain hidden dark:block" 
                     />
                 </div>
                 <div className="sf-caption2 text-ios-label-secondary truncate w-full mt-0.5" style={{ fontSize: '13px', lineHeight: '15px' }}>
