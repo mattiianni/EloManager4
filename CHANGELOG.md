@@ -1,5 +1,13 @@
 # Changelog
 
+## v4.1.8 — 2026-06-26
+### Modifiche UI/UX
+- Sostituito il titolo di testo nell'intestazione e nello Splash Screen con i nuovi loghi ufficiali (\`elomanager.png\` ed \`elomanager_w.png\`).
+- Implementato lo switch automatico dell'immagine in base al tema di sistema (chiaro/scuro).
+- Ribilanciate le proporzioni dell'intestazione superiore: altezza aumentata a 80px e dimensioni del logo adattate (~20% più grandi) per una leggibilità ottimale sia su Desktop che Mobile.
+- Aggiornate icone favicon e PWA.
+- Risolti problemi di layout (sbordamento) nella stampa PDF delle partite a 3 set.
+
 ## v4.1.7 — 2026-06-26
 ### Operazioni di Rilascio / Infrastruttura
 - Verificata la piena compatibilità dei file di deploy (`vercel.json`, `package.json`, `vite.config.ts`) con l'infrastruttura di Vercel, prendendo come riferimento il branch del precedente repository `PadelManager2`. 
