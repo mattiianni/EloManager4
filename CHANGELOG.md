@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.1.10 — 2026-06-26
+### Modifiche UI/UX & Fix
+- Logo Header Mobile: ricentrato in posizione assoluta e ridotto in altezza (-10%) per dare respiro alla UI senza rompere gli allineamenti.
+- Header Mobile (Pulsanti destro): le icone `Giorno/Notte` ed `Esci` sono ora impilate in verticale per risparmiare spazio orizzontale. Pulsante tema leggermente scalato (-25%).
+- Aggiunto alert di conferma ("Sei sicuro di voler uscire?") al tocco dell'icona `Esci` per evitare logout accidentali (fat finger).
+
 ## v4.1.9 — 2026-06-26
 ### Modifiche UI/UX (Mobile/PWA)
 - Header: spostato il logo centrale leggermente a sinistra per distanziarlo dal toggle tema su schermi stretti.
