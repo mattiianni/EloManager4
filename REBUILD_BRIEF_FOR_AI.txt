@@ -4,6 +4,10 @@ Obiettivo
 - Ricostruire da zero una web app/PWA per gestione tornei di padel con ELO, statistiche e stampa PDF.
 - Deve supportare multi-workspace (isolamento dati) con login tramite codice numerico a 6 cifre.
 
+8) Considerazioni Grafiche / UI
+- L'intestazione globale dell'app e lo Splash Screen utilizzano file immagine (`elomanager.png` per dark theme, `elomanager_w.png` per light theme) anziché titoli testuali.
+- Nei PDF generati (specie tornei a squadre), la griglia dei risultati deve sempre assicurare lo spazio in larghezza sufficiente per evitare gli accapo nei match da 3 set.
+
 Stack consigliato (compatibile con progetto attuale)
 - Frontend: React 18 + TypeScript + Vite + Tailwind
 - Backend: Node.js + Express

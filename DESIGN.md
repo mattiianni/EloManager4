@@ -176,6 +176,8 @@ Linee guida chiave:
 ## Cose da non rompere (invarianti)
 
 - Qualunque update a UI/UX deve evitare layout shift su mobile/PWA (CTA/footer, sidebar, ecc.)
+- Intestazione e Splash Screen usano i loghi grafici (elomanager.png e elomanager_w.png) in sostituzione al testo, con switch automatico in base al tema di sistema (light/dark).
+- Le tabelle dei PDF sono ottimizzate in larghezza (colonne nomi vs colonne set) per evitare che i punteggi dei match a 3 set vadano a capo rovinando il layout.
 - Tutte le query lato backend devono filtrare per `workspace_id` dove applicabile
 - Nessuna cache su API: i risultati devono aggiornarsi immediatamente dopo salvataggi
 - `Torneo a squadre` resta un flusso separato: non forzare le logiche “a coppie” dentro i matchday
