@@ -41,7 +41,7 @@ const TEAM_TOURNAMENT_FINAL_PHASE_LABELS: Record<RoundRobinFinalPhase, string> =
 };
 
 const ParticipantListSkeleton = () => (
-    <div className="space-y-2 animate-pulse pr-2 max-h-96 overflow-y-auto px-4">
+    <div className="space-y-2 animate-pulse pr-2 max-h-96 overflow-y-auto">
         {[...Array(8)].map((_, i) => (
             <div key={i} className="flex items-center space-x-3 p-2">
                 <div className="h-4 w-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
@@ -894,7 +894,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
         return (
             <div className="mx-auto max-w-3xl">
                 <Card title="Tipo Torneo / Giornata">
-                    <div className="space-y-4 px-4">
+                    <div className="space-y-4">
                         <p className="text-sm text-app-muted">
                             Scegli se creare un nuovo torneo (a coppie o a squadre) o aggiungere una giornata a un torneo gia esistente
                         </p>
@@ -917,7 +917,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
         return (
             <div className="mx-auto max-w-3xl">
                 <Card title="Aggancia Giornata a Torneo Esistente">
-                    <div className="space-y-5 px-4">
+                    <div className="space-y-5">
                         <p className="text-sm text-app-muted">
                             Scegli il torneo a cui vuoi agganciare la nuova giornata.
                         </p>
@@ -975,7 +975,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
 
     const teamTournamentForm = (
         <Card title="Torneo a Squadre">
-            <form onSubmit={handleCreateTeamTournament} className="space-y-5 px-4">
+            <form onSubmit={handleCreateTeamTournament} className="space-y-5">
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                     Questo flusso crea subito un nuovo <strong>Torneo a Squadre</strong> nel database e lo rende disponibile nella pagina Tornei.
                 </p>
@@ -1133,7 +1133,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
         return (
             <div className="max-w-4xl mx-auto">
                 <Card title={`Modifica ${teamTournamentTeamToEdit.name}`}>
-                    <form onSubmit={handleUpdateTeamTournamentTeam} className="space-y-5 px-4">
+                    <form onSubmit={handleUpdateTeamTournamentTeam} className="space-y-5">
                         <div>
                             <label className="block text-sm font-medium text-gray-500 dark:text-gray-400">Nome Squadra</label>
                             <input
@@ -1179,7 +1179,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                             {editTeamPlayers.map((player, index) => {
                                 const isPlayed = checkPlayerPlayed(index);
                                 return (
-                                <div key={index} className="space-y-2 px-4">
+                                <div key={index} className="space-y-2">
                                     <div className="text-sm font-semibold text-gray-500 dark:text-gray-400">
                                         {index + 1}.
                                         {index === 0 ? ' (Capitano)' : ''}
@@ -1242,7 +1242,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
             return (
                 <div className="max-w-4xl mx-auto">
                     <Card title="Riepilogo Torneo a Squadre">
-                        <div className="space-y-4 px-4">
+                        <div className="space-y-4">
                             <div>
                                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                                     {teamTournamentToConfigureData?.name || 'Torneo a Squadre'}
@@ -1253,7 +1253,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                             </div>
 
                             {teamTournamentConfig?.format === 'ROUND ROBIN' && roundRobinSchedule ? (
-                                <div className="space-y-4 px-4">
+                                <div className="space-y-4">
                                     {roundRobinSchedule.days.map(day => (
                                         <div key={day.dayNumber} className="rounded-lg bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 p-4">
                                             <p className="font-semibold text-gray-900 dark:text-white">
@@ -1264,7 +1264,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                                     Riposa: {getTeamNameByNumber(day.byeTeamNumber)}
                                                 </p>
                                             ) : null}
-                                            <div className="mt-3 space-y-3 px-4">
+                                            <div className="mt-3 space-y-3">
                                                 {day.matches.map(match => (
                                                     <div key={match.matchNumber} className="rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 px-4 py-3">
                                                         <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
@@ -1280,7 +1280,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                     ))}
                                 </div>
                             ) : teamTournamentConfig?.format === 'ELIMINAZIONE DIRETTA' && teamTournamentFixtures.length > 0 ? (
-                                <div className="space-y-4 px-4">
+                                <div className="space-y-4">
                                     <div className="rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4">
                                         <p className="text-sm font-semibold text-gray-900 dark:text-white">
                                             Tabellone a eliminazione diretta
@@ -1296,7 +1296,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                                 <p className="font-semibold text-gray-900 dark:text-white">
                                                     {bracketPhaseLabel(phase, 1).replace(/^1[°^]\s*/, '')}
                                                 </p>
-                                                <div className="mt-3 space-y-3 px-4">
+                                                <div className="mt-3 space-y-3">
                                                     {teamTournamentFixtures
                                                         .filter(fixture => fixture.phase === phase)
                                                         .sort((a, b) => a.slot - b.slot)
@@ -1353,7 +1353,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
             <>
                 <div className="max-w-4xl mx-auto">
                     <Card title="Completa Configurazione - Torneo a Squadre">
-                        <div className="space-y-4 px-4">
+                        <div className="space-y-4">
                             <div className="flex items-start justify-between gap-4">
                                 <div>
                                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -1559,7 +1559,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                     onClose={() => setIsEditTeamTournamentModalOpen(false)}
                     title="Modifica Dati Base"
                 >
-                    <form onSubmit={handleUpdateTeamTournamentConfig} className="space-y-4 px-4">
+                    <form onSubmit={handleUpdateTeamTournamentConfig} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-500 dark:text-gray-400">Nome Torneo</label>
                             <input
@@ -1692,7 +1692,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
     }
 
     return (
-        <div className="space-y-6 px-4">
+        <div className="space-y-6 pb-8">
             {isShuffling && <ShuffleAnimation />}
             {isCompletingTeamTournamentConfiguration && teamTournamentConfig?.format === 'ELIMINAZIONE DIRETTA' && (
                 <ShuffleAnimation title="Creo il tabellone..." />
@@ -1748,7 +1748,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
 
                     {!isTeamTournamentFlow && mode === 'Seeded' && (
                         <Card title="Seleziona Teste di Serie">
-                            <div className="space-y-2 max-h-60 overflow-y-auto px-4">
+                            <div className="space-y-2 max-h-60 overflow-y-auto">
                                 {participantPlayers.sort((a,b) => b.currentElo - a.currentElo).map(p => (
                                     <label key={p.id} className="flex items-center space-x-3 cursor-pointer p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
                                         <input type="checkbox" checked={seeds.includes(p.id)} onChange={() => handleSeedToggle(p.id)} className="form-checkbox h-4 w-4 rounded text-sky-500 bg-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-sky-500" />
@@ -1761,7 +1761,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
 
                     {!isTeamTournamentFlow && mode !== 'Manual' && (
                         <Card title={participantsTitle}>
-                            <div className="space-y-2 px-4">
+                            <div className="space-y-2">
                                  <input
                                     type="text"
                                     placeholder="Cerca giocatori..."
@@ -1786,7 +1786,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                     )}
                     
                     {!isTeamTournamentFlow && (
-                        <div>
+                        <div className="px-4">
                             <Button onClick={handleDraw} className="w-full" disabled={isShuffling}>
                                 <ShuffleIcon /> <span className="ml-2">{isShuffling ? 'Sorteggiando...' : (mode === 'Manual' ? 'Conferma Coppie' : 'Sorteggia Coppie')}</span>
                             </Button>
@@ -1798,7 +1798,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                 <div>
                     {mode === 'Manual' && !drawnPairs ? (
                         <Card title="Selezione Manuale Coppie">
-                        <div className="space-y-4 max-h-[calc(100vh-20rem)] overflow-y-auto px-4">
+                        <div className="space-y-4 max-h-[calc(100vh-20rem)] overflow-y-auto">
                             {manualPairs.map((pair, pairIndex) => {
                                 const selectedInManual = manualPairs.flat();
                                 return (
@@ -1846,7 +1846,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                     ) : (
                         <Card title={mode === 'Manual' ? "Coppie Confermate" : "Risultati Sorteggio"}>
                         {!isShuffling && drawnPairs && (
-                            <div className="space-y-4 px-4">
+                            <div className="space-y-4">
                                 {drawnPairs.map((pair, index) => (
                                     <div key={index} className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg flex justify-between items-center">
                                         <div>
