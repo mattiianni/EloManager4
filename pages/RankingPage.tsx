@@ -307,7 +307,21 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                                 
                                 <HIGListRow
                                     label={`${player.name} ${player.surname}`}
-                                    subtitle={selectedTournamentId ? `${player.playerGiornateCount}/${tournamentGiornate.length} giornate` : undefined}
+                                    subtitle={
+                                        <div className="flex items-center justify-between mt-0.5 w-full">
+                                            <span className="text-ios-label-secondary text-[13px]">
+                                                {selectedTournamentId ? `${player.playerGiornateCount}/${tournamentGiornate.length} giornate` : `Posizione #${player.rank}`}
+                                            </span>
+                                            <div className="flex items-center gap-3 pr-2">
+                                                <button onClick={(e) => { e.stopPropagation(); setProfilePlayer(player); }} className="text-ios-green" aria-label="Info">
+                                                    <SFIcon name="info.circle" size={16} />
+                                                </button>
+                                                <button onClick={(e) => { e.stopPropagation(); handleToggleExpand(player.id); }} className="text-ios-label-tertiary">
+                                                    <SFIcon name={isExpanded ? "chevron.up" : "chevron.down"} size={16} />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
                                     icon={<div className="flex h-full w-full items-center justify-center">{getMedalIcon(idx)}</div>}
                                     detail={
                                         <div className="flex items-center gap-2">
@@ -315,16 +329,7 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                                             {getTrendIcon(player.lastDelta)}
                                         </div>
                                     }
-                                    accessory={
-                                        <div className="flex items-center gap-2">
-                                            <button onClick={(e) => { e.stopPropagation(); setProfilePlayer(player); }} className="text-ios-green p-1" aria-label="Info">
-                                                <SFIcon name="info.circle" size={20} />
-                                            </button>
-                                            <button onClick={(e) => { e.stopPropagation(); handleToggleExpand(player.id); }} className="text-ios-label-tertiary p-1">
-                                                <SFIcon name={isExpanded ? "chevron.up" : "chevron.down"} size={16} />
-                                            </button>
-                                        </div>
-                                    }
+                                    accessory={null}
                                 />
 
                                 {isExpanded && playerHistory.length > 0 && (

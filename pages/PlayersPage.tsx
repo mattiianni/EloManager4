@@ -161,12 +161,12 @@ const PlayersPage: React.FC = () => {
                                 key={player.id}
                                 label={sortIndex === 1 ? `${player.surname} ${player.name}` : `${player.name} ${player.surname}`}
                                 subtitle={
-                                    <div className="flex flex-col gap-1 mt-1">
-                                        <span>{player.position}</span>
-                                        <div className="flex items-center gap-2 -ml-1">
-                                            <button onClick={(e) => { e.stopPropagation(); setProfilePlayer(player); }} className="p-1 text-ios-green" aria-label="Profilo"><SFIcon name="info.circle" size={18}/></button>
-                                            <button onClick={(e) => { e.stopPropagation(); setPlayerToEdit(player); }} className="p-1 text-ios-blue" aria-label="Modifica"><SFIcon name="pencil" size={18}/></button>
-                                            <button onClick={(e) => { e.stopPropagation(); handleDelete(player.id); }} className="p-1 text-ios-red" aria-label="Elimina"><SFIcon name="trash" size={18}/></button>
+                                    <div className="flex items-center justify-between mt-0.5">
+                                        <span className="text-ios-label-secondary text-[13px]">{player.position}</span>
+                                        <div className="flex items-center gap-3">
+                                            <button onClick={(e) => { e.stopPropagation(); setProfilePlayer(player); }} className="text-ios-green" aria-label="Profilo"><SFIcon name="info.circle" size={16}/></button>
+                                            <button onClick={(e) => { e.stopPropagation(); setPlayerToEdit(player); }} className="text-ios-blue" aria-label="Modifica"><SFIcon name="pencil" size={16}/></button>
+                                            <button onClick={(e) => { e.stopPropagation(); handleDelete(player.id); }} className="text-ios-red" aria-label="Elimina"><SFIcon name="trash" size={16}/></button>
                                         </div>
                                     </div>
                                 }
