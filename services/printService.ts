@@ -963,14 +963,14 @@ export const printTournamentReport = (
             return `
                 <tr style="height: 20px;">
                     <td style="text-align: center; width: 10%; font-size: 10px; padding: 3px 4px; height: 20px; line-height: 1.2;">${court}</td>
-                    <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team1Name}</td>
-                    <td style="text-align: center; width: 16%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">
+                    <td style="width: 32%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                    <td style="text-align: center; width: 26%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap;">
                         ${tournament.status === 'scheduled' ? 
                             '<span style="border: 1px solid #ccc; padding: 3px 8px; display: inline-block; font-size: 11px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 3px 8px; display: inline-block; font-size: 11px;">&nbsp;</span>' : 
                             scoreHtml
                         }
                     </td>
-                    <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team2Name}</td>
+                    <td style="width: 32%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                 </tr>
             `;
         } else {
@@ -989,14 +989,14 @@ export const printTournamentReport = (
             return `
                 <tr style="height: 20px;">
                     <td style="text-align: center; width: 10%; font-size: 10px; padding: 3px 4px; height: 20px; line-height: 1.2;">${court}</td>
-                    <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team1Name}</td>
-                    <td style="text-align: center; width: 16%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">
+                    <td style="width: 32%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                    <td style="text-align: center; width: 26%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap;">
                         ${tournament.status === 'scheduled' ? 
                             '<span style="border: 1px solid #ccc; padding: 3px 8px; display: inline-block; font-size: 11px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 3px 8px; display: inline-block; font-size: 11px;">&nbsp;</span>' : 
                             scoreHtml
                         }
                     </td>
-                    <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team2Name}</td>
+                    <td style="width: 32%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                 </tr>
             `;
         }
@@ -2233,12 +2233,12 @@ export const printTeamTournamentMatchdayReport = (
         const scoreTextHtml = formatScoreBoxes(sets, false);
         return `
             <tr style="height: 20px;">
-                <td style="text-align: center; width: 12%; font-size: 10px; padding: 3px 4px;">Partita ${idx + 1}</td>
-                <td style="width: 39%; text-align: right; font-size: 11px; padding: 3px 4px;">${t1Players}</td>
-                <td style="text-align: center; width: 18%; font-size: 11px; padding: 3px 4px;">
+                <td style="text-align: center; width: 10%; font-size: 10px; padding: 3px 4px;">Partita ${idx + 1}</td>
+                <td style="width: 32%; text-align: right; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t1Players}</td>
+                <td style="text-align: center; width: 26%; font-size: 11px; padding: 3px 4px; white-space: nowrap;">
                     ${scoreTextHtml}
                 </td>
-                <td style="width: 31%; text-align: left; font-size: 11px; padding: 3px 4px;">${t2Players}</td>
+                <td style="width: 32%; text-align: left; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t2Players}</td>
             </tr>
         `;
     }).join('');
@@ -2291,7 +2291,7 @@ export const printTeamTournamentMatchdayReport = (
 	                )
 	                : block(
 	                    'Games',
-	                    '#16a34a',
+	                    '#FF9500',
 	                    twoRowTable(team1Name, t1g, team2Name, t2g)
 	                );
 
