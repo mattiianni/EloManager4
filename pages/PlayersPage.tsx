@@ -160,20 +160,23 @@ const PlayersPage: React.FC = () => {
                             <HIGListRow
                                 key={player.id}
                                 label={sortIndex === 1 ? `${player.surname} ${player.name}` : `${player.name} ${player.surname}`}
-                                subtitle={player.position}
-                                detail={<span className="font-semibold text-ios-blue">{player.currentElo.toFixed(0)}</span>}
+                                subtitle={
+                                    <div className="flex flex-col gap-1 mt-1">
+                                        <span>{player.position}</span>
+                                        <div className="flex items-center gap-2 -ml-1">
+                                            <button onClick={(e) => { e.stopPropagation(); setProfilePlayer(player); }} className="p-1 text-ios-green" aria-label="Profilo"><SFIcon name="info.circle" size={18}/></button>
+                                            <button onClick={(e) => { e.stopPropagation(); setPlayerToEdit(player); }} className="p-1 text-ios-blue" aria-label="Modifica"><SFIcon name="pencil" size={18}/></button>
+                                            <button onClick={(e) => { e.stopPropagation(); handleDelete(player.id); }} className="p-1 text-ios-red" aria-label="Elimina"><SFIcon name="trash" size={18}/></button>
+                                        </div>
+                                    </div>
+                                }
+                                detail={<span className="font-semibold text-ios-blue text-base">{player.currentElo.toFixed(0)}</span>}
                                 icon={
                                     <div className="flex h-full w-full items-center justify-center bg-ios-fill text-ios-label">
                                         <SFIcon name="person.fill" size={16} />
                                     </div>
                                 }
-                                accessory={
-                                    <div className="flex items-center gap-1">
-                                        <button onClick={() => setProfilePlayer(player)} className="p-1.5 text-ios-green" aria-label="Profilo"><SFIcon name="info.circle" size={20}/></button>
-                                        <button onClick={() => setPlayerToEdit(player)} className="p-1.5 text-ios-blue" aria-label="Modifica"><SFIcon name="pencil" size={20}/></button>
-                                        <button onClick={() => handleDelete(player.id)} className="p-1.5 text-ios-red" aria-label="Elimina"><SFIcon name="trash" size={20}/></button>
-                                    </div>
-                                }
+                                accessory={null}
                             />
                         ))
                     )}

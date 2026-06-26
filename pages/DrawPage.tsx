@@ -1698,9 +1698,9 @@ const DrawPage: React.FC<DrawPageProps> = ({
                 <ShuffleAnimation title="Creo il tabellone..." />
             )}
             <div className="grid grid-cols-1 xl:grid-cols-[minmax(340px,420px)_minmax(0,1fr)] gap-6 items-start">
-                <div className="space-y-6 px-4">
+                <div className="space-y-6">
                     <Card title="Opzioni Sorteggio Coppie">
-                        <div className="space-y-4 px-4">
+                        <div className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-500 dark:text-gray-400">Numero Coppie da Sorteggiare</label>
                                  <div className="mt-1 flex items-center flex-wrap gap-2">

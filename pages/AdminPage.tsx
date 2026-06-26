@@ -408,7 +408,7 @@ const AdminPage: React.FC = () => {
             {/* Tabs */}
             <div className="mb-6 px-4 md:px-0 max-w-2xl mx-auto">
                 <HIGSegmentedControl 
-                    segments={['Workspace', 'Codici Accesso', 'Invia dati', 'Audit Log']}
+                    segments={['Workspace', 'Accessi', 'Invia dati', 'Audit Log']}
                     selectedIndex={
                         activeTab === 'workspaces' ? 0 :
                         activeTab === 'codes' ? 1 :

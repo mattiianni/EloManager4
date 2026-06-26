@@ -36,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
             </div>
 
             {/* Center Title & Subtitle */}
-            <div className="flex-[2] flex flex-col items-center justify-center text-center">
+            <div className="flex-[2] flex flex-col items-center justify-center text-center pr-6 md:pr-0">
                 <div className="flex justify-center items-center w-full mb-0.5">
                     <img 
                         src="/elomanager_w.png" 

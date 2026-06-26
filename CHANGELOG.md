@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.1.9 — 2026-06-26
+### Modifiche UI/UX (Mobile/PWA)
+- Header: spostato il logo centrale leggermente a sinistra per distanziarlo dal toggle tema su schermi stretti.
+- Sorteggi: rimossi i padding ridondanti (`px-4`) che causavano uno schiacciamento anomalo dei contenuti all'interno delle card su mobile.
+- Giocatori: riorganizzato il layout della lista spostando le icone di azione (info, modifica, elimina) in una riga separata sotto il nome e ruolo, risolvendo il troncamento del nome.
+- Admin: rinominato il tab "Codici Accesso" in "Accessi" per evitare wrapping fastidiosi che rompevano il controllo segmentato.
+
 ## v4.1.8 — 2026-06-26
 ### Modifiche UI/UX
 - Sostituito il titolo di testo nell'intestazione e nello Splash Screen con i nuovi loghi ufficiali (\`elomanager.png\` ed \`elomanager_w.png\`).
