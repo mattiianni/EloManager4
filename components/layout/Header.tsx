@@ -55,15 +55,17 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
             </div>
 
             {/* Right Actions */}
-            <div className="flex flex-1 justify-end items-center gap-3">
-                <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <div className="flex flex-1 justify-end items-end md:items-center flex-col md:flex-row gap-1.5 md:gap-3">
+                <div className="scale-75 origin-right md:scale-100 -mb-1 md:mb-0">
+                    <ThemeToggle theme={theme} onToggle={toggleTheme} />
+                </div>
                 <button
                     onClick={logout}
-                    className="flex items-center justify-center text-ios-blue focus:outline-none"
+                    className="flex items-center justify-center text-ios-blue focus:outline-none pr-1 md:pr-0"
                     title="Esci"
                     aria-label="Logout"
                 >
-                    <span className="material-symbols-outlined text-[22px]">logout</span>
+                    <span className="material-symbols-outlined text-[20px] md:text-[22px]">logout</span>
                 </button>
             </div>
         </header>
