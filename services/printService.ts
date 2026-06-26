@@ -1049,14 +1049,14 @@ export const printTournamentReport = (
                 
                 return `
                     <tr style="height: 16px;">
-                        <td style="width: 42%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team1Name}</td>
-                        <td style="text-align: center; width: 16%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">
+                        <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                        <td style="text-align: center; width: 26%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap;">
                             ${tournament.status === 'scheduled' ? 
                                 '<span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span>' : 
                                 scoreHtml
                             }
                         </td>
-                        <td style="width: 42%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team2Name}</td>
+                        <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                     </tr>
                 `;
             }).join('');
@@ -1176,14 +1176,14 @@ export const printTournamentReport = (
                 
                 return `
                     <tr style="height: 16px;">
-                        <td style="width: 42%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team1Name}</td>
-                        <td style="text-align: center; width: 16%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">
+                        <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                        <td style="text-align: center; width: 26%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap;">
                             ${tournament.status === 'scheduled' ? 
                                 '<span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span>' : 
                                 scoreHtml
                             }
                         </td>
-                        <td style="width: 42%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team2Name}</td>
+                        <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                     </tr>
                 `;
             };
@@ -1225,14 +1225,14 @@ export const printTournamentReport = (
                 
                 return `
                     <tr style="height: 16px;">
-                        <td style="width: 42%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team1Name}</td>
-                        <td style="text-align: center; width: 16%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">
+                        <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                        <td style="text-align: center; width: 26%; font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap;">
                             ${tournament.status === 'scheduled' ? 
                                 '<span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 2px 8px; display: inline-block; font-size: 9px;">&nbsp;</span>' : 
                                 scoreHtml
                             }
                         </td>
-                        <td style="width: 42%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0;">${team2Name}</td>
+                        <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 9px; padding: 2px 3px; height: 16px; line-height: 1.0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                     </tr>
                 `;
             };
@@ -1743,7 +1743,7 @@ export const printTeamTournamentMatchdayCalendar = (
 
         return `
             <tr style="height: 22px;">
-                <td style="text-align: center; width: 15%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                <td style="text-align: center; width: 25%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                     Partita ${idx + 1}
                 </td>
                 <td style="width: 32.5%; font-size: 12px; padding: 4px 5px; height: 22px; line-height: 1.2;">
@@ -3625,7 +3625,7 @@ export const printBlankScoreSheet = (
 
         return `
                 <tr style="height: 22px;">
-                    <td style="text-align: center; width: 15%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">${court}</td>
+                    <td style="text-align: center; width: 25%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">${court}</td>
                     <td style="width: 32.5%; font-size: 12px; padding: 4px 5px; height: 22px; line-height: 1.2;">${team1Name}</td>
                     <td style="text-align: center; width: 20%; font-size: 12px; padding: 4px 5px; height: 22px; line-height: 1.2;">
                         <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 13px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 13px;">&nbsp;</span>
@@ -4041,15 +4041,15 @@ export const printGironiTournament = (
 
         return `
             <tr>
-                    <td style="text-align: center; width: 15%; font-size: 10px; padding: 3px 4px;">G${gironeName}${matchIdx + 1}</td>
-                <td style="width: 35%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2;">${team1Name}</td>
-                <td style="text-align: center; width: 15%; font-size: 11px; padding: 3px 4px;">
+                    <td style="text-align: center; width: 25%; font-size: 10px; padding: 3px 4px; white-space: nowrap;">G${gironeName}${matchIdx + 1}</td>
+                <td style="width: 30%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                <td style="text-align: center; width: 25%; font-size: 11px; padding: 3px 4px; white-space: nowrap;">
                     ${tournament.status === 'scheduled' ? 
                         '<span style="border: 1px solid #ccc; padding: 4px 12px; display: inline-block; font-size: 11px;">&nbsp;</span>' : 
                             scoreHtml
                     }
                 </td>
-                <td style="width: 35%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2;">${team2Name}</td>
+                <td style="width: 30%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
             </tr>
         `;
         }).join('');
@@ -4089,9 +4089,9 @@ export const printGironiTournament = (
                     <thead>
                         <tr>
                             <th style="width: 15%; text-align: center;">Partita</th>
-                            <th style="width: 35%;">Squadra A</th>
+                            <th style="width: 30%;">Squadra A</th>
                             <th style="width: 15%; text-align: center;">Risultato</th>
-                            <th style="width: 35%;">Squadra B</th>
+                            <th style="width: 30%;">Squadra B</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -4145,12 +4145,12 @@ export const printGironiTournament = (
 
             return `
                 <tr>
-                    <td style="text-align: center; width: 15%; font-size: 10px; padding: 3px 4px;">${label}</td>
-                    <td style="width: 35%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2;">${team1Name}</td>
-                    <td style="text-align: center; width: 15%; font-size: 11px; padding: 3px 4px;">
+                    <td style="text-align: center; width: 25%; font-size: 10px; padding: 3px 4px; white-space: nowrap;">${label}</td>
+                    <td style="width: 30%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                    <td style="text-align: center; width: 25%; font-size: 11px; padding: 3px 4px; white-space: nowrap;">
                         ${scoreHtml}
                     </td>
-                    <td style="width: 35%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2;">${team2Name}</td>
+                    <td style="width: 30%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                 </tr>
             `;
         };
@@ -4162,9 +4162,9 @@ export const printGironiTournament = (
                     <thead>
                         <tr>
                             <th style="width: 15%; text-align: center;">Partita</th>
-                            <th style="width: 35%;">Squadra A</th>
+                            <th style="width: 30%;">Squadra A</th>
                             <th style="width: 15%; text-align: center;">Risultato</th>
-                            <th style="width: 35%;">Squadra B</th>
+                            <th style="width: 30%;">Squadra B</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -4181,9 +4181,9 @@ export const printGironiTournament = (
                     <thead>
                         <tr>
                             <th style="width: 15%; text-align: center;">Partita</th>
-                            <th style="width: 35%;">Squadra A</th>
+                            <th style="width: 30%;">Squadra A</th>
                             <th style="width: 15%; text-align: center;">Risultato</th>
-                            <th style="width: 35%;">Squadra B</th>
+                            <th style="width: 30%;">Squadra B</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -4208,9 +4208,9 @@ export const printGironiTournament = (
                     <thead>
                         <tr>
                             <th style="width: 15%; text-align: center;">Partita</th>
-                            <th style="width: 35%;">Squadra A</th>
+                            <th style="width: 30%;">Squadra A</th>
                             <th style="width: 15%; text-align: center;">Risultato</th>
-                            <th style="width: 35%;">Squadra B</th>
+                            <th style="width: 30%;">Squadra B</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -4227,9 +4227,9 @@ export const printGironiTournament = (
                     <thead>
                         <tr>
                             <th style="width: 15%; text-align: center;">Partita</th>
-                            <th style="width: 35%;">Squadra A</th>
+                            <th style="width: 30%;">Squadra A</th>
                             <th style="width: 15%; text-align: center;">Risultato</th>
-                            <th style="width: 35%;">Squadra B</th>
+                            <th style="width: 30%;">Squadra B</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -4799,8 +4799,8 @@ export const printTournamentStatistics = (stats: any) => {
                 <tr>
                     <th style="text-align: center; width: 10%;">Pos</th>
                     <th style="width: 40%;">Giocatore</th>
-                    <th style="text-align: center; width: 15%;">ELO</th>
-                    <th style="text-align: center; width: 15%;">Var. ELO</th>
+                    <th style="text-align: center; width: 25%;">ELO</th>
+                    <th style="text-align: center; width: 25%;">Var. ELO</th>
                     <th style="text-align: center; width: 20%;">Games V/P</th>
                 </tr>
             </thead>
@@ -5008,27 +5008,27 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box 1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box 2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666;">2° Box 2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666;">2° Box 1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
@@ -5042,27 +5042,27 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">3° Box 1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">3° Box 2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666;">4° Box 2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666;">4° Box 1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
@@ -5081,26 +5081,26 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box A + Miglior Secondo</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box B + 1° Box C</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
@@ -5113,26 +5113,26 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Secondo 2° + Peggior Terzo</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Terzo 2° + Secondo Terzo</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
@@ -5145,26 +5145,26 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Quarto Terzo + Ultimo Quarto</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Terzo Quarto + Secondo Quarto</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
@@ -5185,26 +5185,26 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box ${box1} + 2° Box ${box1}</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">1° Box ${box2} + 2° Box ${box2}</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <div style="margin: 8px 0; font-weight: bold;">vs</div>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
                             </tr>
@@ -5225,14 +5225,14 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Vincitore SF1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Vincitore SF2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
@@ -5248,14 +5248,14 @@ export const printBeatTheBoxBlank = (
                     <table style="margin-bottom: 16px; font-size: 11px;">
                         <tbody>
                             <tr style="height: 22px;">
-                                <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Perdente SF1</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
-                                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                                 </td>
-                                <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                                <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                     <div style="font-size: 9px; color: #666; margin-bottom: 2px;">Perdente SF2</div>
                                     <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px; width: 85%; min-width: 120px;">&nbsp;</span>
                                 </td>
@@ -5281,11 +5281,11 @@ export const printBeatTheBoxBlank = (
             
             return `
                 <tr style="height: 22px;">
-                    <td style="width: 42%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">${team1Name}</td>
-                    <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                    <td style="width: 37%; text-align: right; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                    <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                         <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span> - <span style="border: 1px solid #ccc; padding: 4px 10px; display: inline-block; font-size: 12px;">&nbsp;</span>
                     </td>
-                    <td style="width: 42%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">${team2Name}</td>
+                    <td style="width: 37%; text-align: left; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
                 </tr>
             `;
         }).join('');
@@ -5456,11 +5456,11 @@ export const printBeatTheBoxComplete = (
         
         return `
             <tr style="height: 24px;">
-                <td style="width: 42%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">${team1Name}</td>
-                <td style="text-align: center; width: 16%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">
+                <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                <td style="text-align: center; width: 26%; font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap;">
                     ${scoreHtml}
                 </td>
-                <td style="width: 42%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3;">${team2Name}</td>
+                <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 5px 6px; height: 24px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
             </tr>
         `;
     };
@@ -5473,7 +5473,7 @@ export const printBeatTheBoxComplete = (
             <tr style="height: 24px;">
                 <td style="text-align: center; width: 10%; font-size: 11px; padding: 5px 6px; height: 24px;">${idx + 1}°</td>
                 <td style="width: 55%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.player.name} ${entry.player.surname}</td>
-                <td style="text-align: center; width: 15%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.points}</td>
+                <td style="text-align: center; width: 25%; font-size: 11px; padding: 5px 6px; height: 24px; white-space: nowrap;">${entry.points}</td>
                 <td style="text-align: center; width: 20%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.gameDifference >= 0 ? '+' : ''}${entry.gameDifference}</td>
             </tr>
         `).join('') : '';
@@ -5680,8 +5680,8 @@ export const printBeatTheBoxComplete = (
             <tr style="height: 20px;">
                 <td style="text-align: center; width: 10%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.rank}°</td>
                 <td style="width: 50%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.player.name} ${entry.player.surname}</td>
-                <td style="text-align: center; width: 15%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.gamesWon}</td>
-                <td style="text-align: center; width: 15%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.gamesLost}</td>
+                <td style="text-align: center; width: 25%; font-size: 11px; padding: 5px 6px; height: 24px; white-space: nowrap;">${entry.gamesWon}</td>
+                <td style="text-align: center; width: 25%; font-size: 11px; padding: 5px 6px; height: 24px; white-space: nowrap;">${entry.gamesLost}</td>
                 <td style="text-align: center; width: 10%; font-size: 11px; padding: 5px 6px; height: 24px;">${entry.winPercentage.toFixed(1)}%</td>
             </tr>
         `;
@@ -5771,19 +5771,19 @@ export const printTorneoLiberoBlank = (
                 <table style="width: 100%; font-size: 11px;">
                     <tbody>
                         <tr style="height: 28px;">
-                            <td style="width: 42%; text-align: right; padding: 4px 8px;">
+                            <td style="width: 37%; text-align: right; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 <div style="font-size: 10px; color: #666; margin-bottom: 4px;">Squadra A</div>
                                 <div style="display: flex; gap: 4px; justify-content: flex-end;">
                                     <span style="border: 1px solid #ccc; padding: 6px 12px; display: inline-block; min-width: 100px; background: #fafafa;">&nbsp;</span>
                                     <span style="border: 1px solid #ccc; padding: 6px 12px; display: inline-block; min-width: 100px; background: #fafafa;">&nbsp;</span>
                                 </div>
                             </td>
-                            <td style="text-align: center; width: 16%; padding: 4px 8px;">
+                            <td style="text-align: center; width: 26%; padding: 4px 8px; white-space: nowrap;">
                                 <span style="border: 1px solid #ccc; padding: 6px 12px; display: inline-block; min-width: 30px;">&nbsp;</span>
                                 <span style="margin: 0 4px;">-</span>
                                 <span style="border: 1px solid #ccc; padding: 6px 12px; display: inline-block; min-width: 30px;">&nbsp;</span>
                             </td>
-                            <td style="width: 42%; text-align: left; padding: 4px 8px;">
+                            <td style="width: 37%; text-align: left; padding: 4px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                 <div style="font-size: 10px; color: #666; margin-bottom: 4px;">Squadra B</div>
                                 <div style="display: flex; gap: 4px; justify-content: flex-start;">
                                     <span style="border: 1px solid #ccc; padding: 6px 12px; display: inline-block; min-width: 100px; background: #fafafa;">&nbsp;</span>
@@ -5900,11 +5900,11 @@ export const printTorneoLiberoComplete = (
         partiteContent += `
             <tr style="height: 20px;">
                 <td style="text-align: center; width: 10%; font-size: 10px; padding: 3px 4px; height: 20px; line-height: 1.2;">${idx + 1}</td>
-                <td style="width: 37%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team1Name}</td>
-                <td style="text-align: center; width: 16%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">
+                <td style="width: 32%; text-align: right; ${match.winner === 'team1' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team1Name}</td>
+                <td style="text-align: center; width: 26%; font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap;">
                     ${scoreHtml}
                 </td>
-                <td style="width: 37%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2;">${team2Name}</td>
+                <td style="width: 32%; text-align: left; ${match.winner === 'team2' ? 'font-weight: bold;' : ''} font-size: 11px; padding: 3px 4px; height: 20px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${team2Name}</td>
             </tr>
         `;
     });
