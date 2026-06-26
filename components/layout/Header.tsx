@@ -60,7 +60,11 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
                     <ThemeToggle theme={theme} onToggle={toggleTheme} />
                 </div>
                 <button
-                    onClick={logout}
+                    onClick={() => {
+                        if (window.confirm('Sei sicuro di voler uscire?')) {
+                            logout();
+                        }
+                    }}
                     className="flex items-center justify-center text-ios-blue focus:outline-none pr-1 md:pr-0"
                     title="Esci"
                     aria-label="Logout"
