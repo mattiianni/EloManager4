@@ -2735,12 +2735,12 @@ export const printTeamTournamentReport = (
 
 	            return `
 	                <tr style="height: 18px;">
-	                    <td style="text-align: center; width: 12%; font-size: 9px; padding: 2px 4px;">Partita ${idx + 1}</td>
-	                    <td style="width: 39%; text-align: right; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t1Players}</td>
-	                    <td style="text-align: center; width: 18%; font-size: 10px; padding: 2px 4px;">
+	                    <td style="text-align: center; width: 10%; font-size: 9px; padding: 2px 4px;">Partita ${idx + 1}</td>
+	                    <td style="width: 32%; text-align: right; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t1Players}</td>
+	                    <td style="text-align: center; width: 26%; font-size: 10px; padding: 2px 4px; white-space: nowrap;">
 	                        ${scoreTextHtml}
 	                    </td>
-	                    <td style="width: 31%; text-align: left; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t2Players}</td>
+	                    <td style="width: 32%; text-align: left; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t2Players}</td>
 	                </tr>
 	            `;
 	        }).join('');
@@ -2782,7 +2782,7 @@ export const printTeamTournamentReport = (
 	                    const s = md.summary;
 	                    const t1w = getTeamTournamentScoreValue(s, swap ? 'team2Wins' : 'team1Wins', config);
 	                    const t2w = getTeamTournamentScoreValue(s, swap ? 'team1Wins' : 'team2Wins', config);
-                    return `<div style="display: inline-flex; align-items: center; justify-content: center;"><span style="background-color: #16a34a; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t1w}</span><span style="margin: 0 4px; font-weight: bold; color: #4b5563;">-</span><span style="background-color: #16a34a; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t2w}</span></div>`;
+                    return `<div style="display: inline-flex; align-items: center; justify-content: center;"><span style="background-color: #FF9500; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t1w}</span><span style="margin: 0 4px; font-weight: bold; color: #4b5563;">-</span><span style="background-color: #FF9500; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t2w}</span></div>`;
 	                })()
 	                : '';
 
