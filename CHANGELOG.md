@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.1.7 — 2026-06-26
+### Operazioni di Rilascio / Infrastruttura
+- Verificata la piena compatibilità dei file di deploy (`vercel.json`, `package.json`, `vite.config.ts`) con l'infrastruttura di Vercel, prendendo come riferimento il branch del precedente repository `PadelManager2`. 
+- Il repository è formalmente pronto per lo switch di produzione su Vercel: non è stata necessaria alcuna modifica ai parametri in quanto già conformi.
+
 ## v4.1.6 — 2026-06-25
 ### Modifiche e Fix (HIG)
 - Completata traduzione in italiano di tutti i popup e dei messaggi di sistema residui (es. risultati, alert di salvataggio torneo, ecc.).
