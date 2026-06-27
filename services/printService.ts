@@ -852,13 +852,13 @@ export const printRanking = (
         </style>
 
         <div style="text-align: center; margin-bottom: 20px;">
-            <h1>Classifica Giocatori</h1>
+            <h1>${selectedTournament ? `Classifica Giocatori (${selectedTournament.giornataName || selectedTournament.name})` : 'Classifica Generale'}</h1>
             <div class="date-info">Aggiornata al: ${new Date().toLocaleDateString('it-IT').replace(/\//g, '.')}</div>
         </div>
 
         ${selectedTournament ? `
             <div class="filter-info" style="text-align: center;">
-                <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">${selectedTournament.name}</div>
+                <div style="font-size: 13px; font-weight: bold; margin-bottom: 4px;">${selectedTournament.giornataName || selectedTournament.name}</div>
                 <div style="font-size: 11px;">${selectedTournament.club}</div>
                 ${tournamentGiornate && tournamentGiornate.length > 1 ? `<div style="font-size: 10px; margin-top: 4px;">Giornate: ${tournamentGiornate.length}</div>` : ''}
             </div>
@@ -907,7 +907,10 @@ export const printRanking = (
         </div>
     `;
 
-    return openPrintWindow(`Classifica Giocatori, ${new Date().toLocaleDateString('it-IT').replace(/\//g, '.')}`, content);
+    const pageTitle = selectedTournament 
+        ? `Classifica Giocatori (${selectedTournament.giornataName || selectedTournament.name})` 
+        : 'Classifica Generale';
+    return openPrintWindow(`${pageTitle}, ${new Date().toLocaleDateString('it-IT').replace(/\//g, '.')}`, content);
 };
 
 export const printTournamentReport = (
