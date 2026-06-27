@@ -1279,7 +1279,7 @@ const StatistichePage: React.FC = () => {
                             <optgroup label="Altri tornei">
                                 {completedTournaments.map(tournament => (
                                     <option key={`series:${(tournament.giornataName || tournament.name)}`} value={`series:${(tournament.giornataName || tournament.name)}`}>
-                                        {tournament.name}
+                                        {tournament.giornataName || tournament.name}
                                     </option>
                                 ))}
                             </optgroup>

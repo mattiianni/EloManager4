@@ -241,7 +241,7 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                         <option value="">Generale</option>
                         {completedTournaments.map(tournament => (
                             <option key={(tournament.giornataName || tournament.name)} value={(tournament.giornataName || tournament.name)}>
-                                {tournament.name}
+                                {tournament.giornataName || tournament.name}
                             </option>
                         ))}
                     </select>
