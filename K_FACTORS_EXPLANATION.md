@@ -1,35 +1,16 @@
-# K-Factors Explanation
+# ELO K-Factors Configuration (Aggiornamento V4.2)
 
-Razionali sintetici della configurazione K oggi attiva.
+A partire da questo aggiornamento, il sistema Padel ELO Manager utilizza un approccio puramente matematico e oggettivo per il calcolo delle variazioni ELO.
+Sono stati rimossi tutti i K-Factor asimmetrici e specifici per torneo, per adottare un K-factor globale fisso.
 
-## Principi usati
+## La Regola del K=16 Globale
+Tutte le partite, in tutti i formati di torneo (TorneOtto, Americano, Gironi, Finali 1°-2° o 7°-8°), utilizzano uno standard unico:
 
-- tornei brevi o ad alta numerosita' di match: K piu' conservativo
-- formati con partner variabili: K piu' alto
-- fasi finali: peso maggiore rispetto alla fase qualificatoria
-- alcune finali usano K asimmetrici per riflettere meglio la posizione finale
+**K = 16**
 
-## Configurazione attuale
+Questo garantisce la massima integrità matematica dell'algoritmo ELO:
+1. **Nessuna Inflazione**: I punti totali in palio sono sempre a somma zero tra le due coppie (chi vince guadagna esattamente quello che l'avversario perde).
+2. **Equità Assoluta**: Una finale 3°-4° posto non è più penalizzante rispetto ad una finale 1°-2°. 
+3. **Auto-Bilanciamento**: Le coppie molto forti che affrontano coppie molto deboli vinceranno pochissimi punti, mentre rischieranno di perderne molti in caso di "upset" (sorpresa). Questo è garantito nativamente dalla formula ELO, senza alcun bisogno di "truccare" i K-factor per le finali.
 
-| Formato/Fase | K | Razionale |
-|---|---:|---|
-| Friendly Match | 20 | partita singola, peso medio |
-| TorneOtto 30' | 16 | 6 match totali, variazioni moderate |
-| Americano | 24 | partner e avversari variabili |
-| Beat the Box | 16 | molte partite, peso distribuito |
-| Torneo Libero | 24 | round robin flessibile, impatto significativo |
-| RR+Finali round robin | 10 | qualifica, peso ridotto |
-| RR+Finali finale 1°-2° winner | 32 | premiare la vittoria decisiva |
-| RR+Finali finale 1°-2° loser | 10 | contenere la penalita' del secondo posto |
-| RR+Finali finale 3°-4° winner | 4 | premio minimo |
-| RR+Finali finale 3°-4° loser | 24 | penalita' marcata ultimo posto |
-| Gironi gironi | 14 | peso moderato fase iniziale |
-| Gironi semifinali | 20 | eliminazione diretta |
-| Gironi finale 1°-2° winner | 38 | massima ricompensa |
-| Gironi finale 1°-2° loser | 10 | protezione del secondo posto |
-| Gironi finale 3°-4° winner | 8 | premio ridotto |
-| Gironi finale 3°-4° loser | 20 | penalita' media |
-
-## Nota importante
-
-La fonte di verita' e' `server.js`. Se un documento secondario differisce, prevale il codice.
+Le vecchie configurazioni asimmetriche e "anti-inversione" (es. K=32/10) sono state rimosse per evitare sbilanciamenti a lungo termine e frustrazione nei giocatori delle fasce minori.

@@ -66,10 +66,7 @@ Nota: `Torneo a Squadre` e' un flusso separato (implementato principalmente in `
   - gironi
   - semifinali
   - finali 1°-2° e 3°-4°
-- ELO:
-  - gironi `14`
-  - semifinali `20`
-  - finali con K asimmetrici
+- ELO: `K=16 Standard (tutte le fasi)`
 
 ## 7. Beat the Box
 

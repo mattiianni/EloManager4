@@ -31,86 +31,17 @@ process.on('unhandledRejection', (reason) => {
     console.error('UNHANDLED REJECTION:', reason);
 });
 
-// K factors for different tournament types
-const K_FACTORS = {
-    'TorneOtto 30\'': 16,
-    'Americano': 24,
-    'Round Robin + Finali': 28,
-    'Friendly Match': 20,
-    'Beat the Box': 16,
-    'Torneo Libero': 24,
-};
-
-// K factors for Round Robin + Finali phases (ASYMMETRIC)
-const K_FACTORS_ROUND_ROBIN_FINALI = {
-    roundRobin: 10,
-    finals1st2ndWinner: 32,
-    finals1st2ndLoser: 10,
-    finals3rd4thWinner: 4,
-    finals3rd4thLoser: 24,
-};
-
-// K factors for Gironi + Fase Finale phases (ASYMMETRIC)
-const K_FACTORS_GIRONI_FASE_FINALE = {
-    gironi: 14,
-    semifinals: 20,
-    finals3rd4thWinner: 8,
-    finals3rd4thLoser: 20,
-    finals1st2ndWinner: 38,
-    finals1st2ndLoser: 10,
-};
-
 /**
- * Calculates the change in ELO rating for both teams (supports asymmetric K-factors).
+ * Calculates the change in ELO rating for both teams using a global standard K-factor of 16.
  */
-function calculateEloChange(elo1, elo2, score1, tournamentType = 'TorneOtto 30\'', phase) {
+function calculateEloChange(elo1, elo2, score1, tournamentType, phase) {
     const expectedScore1 = 1 / (1 + Math.pow(10, (elo2 - elo1) / 400));
     const expectedScore2 = 1 - expectedScore1;
     const score2 = 1 - score1;
     
-    let kFactor1;
-    let kFactor2;
-    
-    // For Round Robin + Finali, use phase-specific K factors (potentially asymmetric)
-    if (tournamentType === 'Round Robin + Finali' && phase) {
-        if (phase === 'roundRobin') {
-            kFactor1 = K_FACTORS_ROUND_ROBIN_FINALI.roundRobin;
-            kFactor2 = K_FACTORS_ROUND_ROBIN_FINALI.roundRobin;
-        } else if (phase === 'finals1st2nd') {
-            // Asymmetric: winner gets high K, loser gets low K
-            kFactor1 = score1 === 1 ? K_FACTORS_ROUND_ROBIN_FINALI.finals1st2ndWinner : K_FACTORS_ROUND_ROBIN_FINALI.finals1st2ndLoser;
-            kFactor2 = score2 === 1 ? K_FACTORS_ROUND_ROBIN_FINALI.finals1st2ndWinner : K_FACTORS_ROUND_ROBIN_FINALI.finals1st2ndLoser;
-        } else if (phase === 'finals3rd4th') {
-            // Asymmetric: winner gets low K, loser gets high K
-            kFactor1 = score1 === 1 ? K_FACTORS_ROUND_ROBIN_FINALI.finals3rd4thWinner : K_FACTORS_ROUND_ROBIN_FINALI.finals3rd4thLoser;
-            kFactor2 = score2 === 1 ? K_FACTORS_ROUND_ROBIN_FINALI.finals3rd4thWinner : K_FACTORS_ROUND_ROBIN_FINALI.finals3rd4thLoser;
-        } else {
-            kFactor1 = K_FACTORS['Round Robin + Finali'];
-            kFactor2 = K_FACTORS['Round Robin + Finali'];
-        }
-    } else if (tournamentType === 'Gironi + Fase Finale' && phase) {
-        if (phase === 'gironi') {
-            kFactor1 = K_FACTORS_GIRONI_FASE_FINALE.gironi;
-            kFactor2 = K_FACTORS_GIRONI_FASE_FINALE.gironi;
-        } else if (phase === 'semifinals') {
-            kFactor1 = K_FACTORS_GIRONI_FASE_FINALE.semifinals;
-            kFactor2 = K_FACTORS_GIRONI_FASE_FINALE.semifinals;
-        } else if (phase === 'finals1st2nd') {
-            kFactor1 = score1 === 1 ? K_FACTORS_GIRONI_FASE_FINALE.finals1st2ndWinner : K_FACTORS_GIRONI_FASE_FINALE.finals1st2ndLoser;
-            kFactor2 = score2 === 1 ? K_FACTORS_GIRONI_FASE_FINALE.finals1st2ndWinner : K_FACTORS_GIRONI_FASE_FINALE.finals1st2ndLoser;
-        } else if (phase === 'finals3rd4th') {
-            kFactor1 = score1 === 1 ? K_FACTORS_GIRONI_FASE_FINALE.finals3rd4thWinner : K_FACTORS_GIRONI_FASE_FINALE.finals3rd4thLoser;
-            kFactor2 = score2 === 1 ? K_FACTORS_GIRONI_FASE_FINALE.finals3rd4thWinner : K_FACTORS_GIRONI_FASE_FINALE.finals3rd4thLoser;
-        } else {
-            const k = 20;
-            kFactor1 = k;
-            kFactor2 = k;
-        }
-    } else {
-        const k = K_FACTORS[tournamentType] || K_FACTORS['TorneOtto 30\''];
-        kFactor1 = k;
-        kFactor2 = k;
-    }
+    // Global standard K-factor for all tournaments and phases
+    const kFactor1 = 16;
+    const kFactor2 = 16;
     
     const delta1 = kFactor1 * (score1 - expectedScore1);
     const delta2 = kFactor2 * (score2 - expectedScore2);
@@ -1322,38 +1253,101 @@ app.post('/api/admin/impersonate', requireAdmin, async (req, res) => {
     }
 });
 
-// POST /api/admin/recalculate-elos - Recalculate all players' current_elo from elo_history
+// POST /api/admin/recalculate-elos - Recalculate all players' current_elo from scratch (K=16)
 // If workspaceId is provided, only that workspace; otherwise ALL workspaces
 app.post('/api/admin/recalculate-elos', requireAdmin, async (req, res) => {
     try {
         const { workspaceId } = req.body;
 
-        // Get players: all workspaces or just one
-        const players = workspaceId
-            ? await sql`SELECT id, name, surname, current_elo, workspace_id FROM players WHERE workspace_id = ${workspaceId}`
-            : await sql`SELECT id, name, surname, current_elo, workspace_id FROM players`;
+        // 1. Reset all players to 1500 ELO and delete all elo_history
+        if (workspaceId) {
+            await sql`DELETE FROM elo_history WHERE workspace_id = ${workspaceId}`;
+            await sql`UPDATE players SET current_elo = 1500 WHERE workspace_id = ${workspaceId}`;
+        } else {
+            await sql`DELETE FROM elo_history`;
+            await sql`UPDATE players SET current_elo = 1500`;
+        }
 
-        const results = [];
-        for (const player of players) {
-            const historyResult = await sql`
-                SELECT COALESCE(SUM(delta), 0) as total_delta
-                FROM elo_history
-                WHERE player_id = ${player.id} AND workspace_id = ${player.workspace_id}
+        // 2. Fetch all matches chronologically
+        let matches;
+        if (workspaceId) {
+            matches = await sql`
+                SELECT m.*, t.type as tournament_type
+                FROM matches m
+                JOIN tournaments t ON m.tournament_id = t.id
+                WHERE m.workspace_id = ${workspaceId} AND m.winner IS NOT NULL
+                ORDER BY t.date ASC, m.created_at ASC
             `;
-            const totalDelta = parseFloat(historyResult[0].total_delta);
-            const correctElo = 1500 + totalDelta;
-            const oldElo = parseFloat(player.current_elo);
-            const diff = correctElo - oldElo;
+        } else {
+            matches = await sql`
+                SELECT m.*, t.type as tournament_type
+                FROM matches m
+                JOIN tournaments t ON m.tournament_id = t.id
+                WHERE m.winner IS NOT NULL
+                ORDER BY t.date ASC, m.created_at ASC
+            `;
+        }
 
-            if (Math.abs(diff) > 0.001) {
-                await sql`UPDATE players SET current_elo = ${correctElo} WHERE id = ${player.id}`;
-                results.push({ name: `${player.name} ${player.surname}`, workspaceId: player.workspace_id, oldElo, newElo: correctElo, diff });
-                logger.info('ELO recalculated', { player: `${player.name} ${player.surname}`, oldElo, newElo: correctElo, diff });
+        // 3. Load all players into memory
+        const playersData = workspaceId
+            ? await sql`SELECT id, name, surname, workspace_id, 1500 as current_elo FROM players WHERE workspace_id = ${workspaceId}`
+            : await sql`SELECT id, name, surname, workspace_id, 1500 as current_elo FROM players`;
+            
+        const playersState = {};
+        for (const p of playersData) {
+            playersState[p.id] = p;
+        }
+
+        let recalculatedCount = 0;
+
+        // 4. Recalculate chronologically
+        for (const m of matches) {
+            const p1 = playersState[m.team1_p1_id];
+            const p2 = playersState[m.team1_p2_id];
+            const p3 = playersState[m.team2_p1_id];
+            const p4 = playersState[m.team2_p2_id];
+
+            if (!p1 || !p2 || !p3 || !p4) continue;
+
+            const t1Elo = (p1.current_elo + p2.current_elo) / 2;
+            const t2Elo = (p3.current_elo + p4.current_elo) / 2;
+            const score1 = m.winner === 'team1' ? 1 : (m.winner === 'team2' ? 0 : 0.5);
+
+            const { delta1, delta2 } = calculateEloChange(t1Elo, t2Elo, score1, m.tournament_type, m.phase);
+
+            // Update in-memory state
+            p1.current_elo += delta1;
+            p2.current_elo += delta1;
+            p3.current_elo += delta2;
+            p4.current_elo += delta2;
+
+            // Insert new history records
+            const historyInserts = [
+                { id: randomUUID(), player_id: p1.id, match_id: m.id, delta: delta1, new_elo: p1.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
+                { id: randomUUID(), player_id: p2.id, match_id: m.id, delta: delta1, new_elo: p2.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
+                { id: randomUUID(), player_id: p3.id, match_id: m.id, delta: delta2, new_elo: p3.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
+                { id: randomUUID(), player_id: p4.id, match_id: m.id, delta: delta2, new_elo: p4.current_elo, created_at: m.created_at, workspace_id: m.workspace_id }
+            ];
+
+            for (const row of historyInserts) {
+                await sql`
+                    INSERT INTO elo_history (id, player_id, match_id, delta, new_elo, created_at, workspace_id)
+                    VALUES (${row.id}, ${row.player_id}, ${row.match_id}, ${row.delta}, ${row.new_elo}, ${row.created_at}, ${row.workspace_id})
+                `;
+            }
+            recalculatedCount++;
+        }
+
+        // 5. Save updated ELOs back to players table
+        for (const pId in playersState) {
+            const p = playersState[pId];
+            if (p.current_elo !== 1500) {
+                await sql`UPDATE players SET current_elo = ${p.current_elo} WHERE id = ${p.id}`;
             }
         }
 
-        logger.info('Recalculate ELOs completed', { scope: workspaceId || 'ALL', corrected: results.length });
-        res.json({ success: true, corrected: results.length, changes: results });
+        logger.info('Recalculate ELOs completed', { scope: workspaceId || 'ALL', matchesRecalculated: recalculatedCount });
+        res.json({ success: true, recalculatedCount });
     } catch (error) {
         logger.error('Failed to recalculate ELOs', error);
         res.status(500).json({ message: 'Errore nel ricalcolo ELO', error: error.message });

@@ -64,7 +64,7 @@ L'app gestisce l'intero ciclo di una serata di padel, dalla formazione delle cop
 
 - SORTEGGIO INTELLIGENTE DELLE COPPIE: 4 modalita - casuale, bilanciato per ELO (forte+debole per partite equilibrate), teste di serie, manuale. Coppie equilibrate in un click.
 
-- SISTEMA ELO PROFESSIONALE: lo stesso algoritmo di rating usato negli scacchi, adattato al padel in coppia. Dopo ogni partita coppia vs coppia, il rating individuale si aggiorna automaticamente. K-factor calibrati per formato, sistema anti-inversione nelle finali, ELO isolato per serie di tornei.
+- SISTEMA ELO PROFESSIONALE: lo stesso algoritmo di rating usato negli scacchi, adattato al padel in coppia. Dopo ogni partita coppia vs coppia, il rating individuale si aggiorna automaticamente. Calcolo basato sul K=16 universale per garantire integrità matematica, ed ELO isolato per serie di tornei.
 
 - PROFILO COMPLETO: per ogni partecipante - partite in coppia vinte/perse, compagni e avversari frequenti con percentuali di vittoria, grafico andamento ELO, storico giornata per giornata, form ultime 5 partite.
 
