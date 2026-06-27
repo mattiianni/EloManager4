@@ -1323,16 +1323,16 @@ app.post('/api/admin/recalculate-elos', requireAdmin, async (req, res) => {
 
             // Insert new history records
             const historyInserts = [
-                { id: randomUUID(), player_id: p1.id, match_id: m.id, delta: delta1, new_elo: p1.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
-                { id: randomUUID(), player_id: p2.id, match_id: m.id, delta: delta1, new_elo: p2.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
-                { id: randomUUID(), player_id: p3.id, match_id: m.id, delta: delta2, new_elo: p3.current_elo, created_at: m.created_at, workspace_id: m.workspace_id },
-                { id: randomUUID(), player_id: p4.id, match_id: m.id, delta: delta2, new_elo: p4.current_elo, created_at: m.created_at, workspace_id: m.workspace_id }
+                { event_id: m.id, player_id: p1.id, elo_before: p1.current_elo - delta1, elo_after: p1.current_elo, delta: delta1, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
+                { event_id: m.id, player_id: p2.id, elo_before: p2.current_elo - delta1, elo_after: p2.current_elo, delta: delta1, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
+                { event_id: m.id, player_id: p3.id, elo_before: p3.current_elo - delta2, elo_after: p3.current_elo, delta: delta2, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
+                { event_id: m.id, player_id: p4.id, elo_before: p4.current_elo - delta2, elo_after: p4.current_elo, delta: delta2, date: m.created_at, type: 'match', workspace_id: m.workspace_id }
             ];
 
             for (const row of historyInserts) {
                 await sql`
-                    INSERT INTO elo_history (id, player_id, match_id, delta, new_elo, created_at, workspace_id)
-                    VALUES (${row.id}, ${row.player_id}, ${row.match_id}, ${row.delta}, ${row.new_elo}, ${row.created_at}, ${row.workspace_id})
+                    INSERT INTO elo_history (event_id, player_id, elo_before, elo_after, delta, date, type, workspace_id)
+                    VALUES (${row.event_id}, ${row.player_id}, ${row.elo_before}, ${row.elo_after}, ${row.delta}, ${row.date}, ${row.type}, ${row.workspace_id})
                 `;
             }
             recalculatedCount++;
