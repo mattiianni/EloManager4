@@ -4802,9 +4802,9 @@ export const printTournamentStatistics = (stats: any) => {
                 <tr>
                     <th style="text-align: center; width: 10%;">Pos</th>
                     <th style="width: 40%;">Giocatore</th>
-                    <th style="text-align: center; width: 25%;">ELO</th>
-                    <th style="text-align: center; width: 25%;">Var. ELO</th>
-                    <th style="text-align: center; width: 20%;">Games V/P</th>
+                    <th style="text-align: center; width: 16%;">ELO</th>
+                    <th style="text-align: center; width: 17%;">Var. ELO</th>
+                    <th style="text-align: center; width: 17%;">Games V/P</th>
                 </tr>
             </thead>
             <tbody>
