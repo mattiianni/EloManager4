@@ -207,8 +207,8 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
         <HIGList className="py-4">
             
             {/* Header / Actions */}
-            <div className="px-4 mb-6 flex justify-between items-center">
-                <div className="sf-title1 text-ios-label font-bold tracking-tight">Classifica</div>
+            <div className="px-1 pt-3 mb-4 flex justify-between items-center">
+                <h2 className="text-[1.62rem] font-black leading-none tracking-tight text-sky-500 dark:text-sky-300 sm:text-[1.78rem] md:text-[2.25rem]">Classifica</h2>
                 <HIGButton 
                     variant="gray"
                     onClick={() => printRanking(

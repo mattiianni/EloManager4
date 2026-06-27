@@ -1482,12 +1482,12 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  )}
  </Card>
 
- <div className="mb-4 sm:mb-6">
+ <div className="px-1 pt-3 -mb-3">
     <div>
-        <div className="text-[1.62rem] font-black leading-none tracking-tight text-sky-500 dark:text-sky-300 sm:text-[1.78rem] md:text-[2.25rem]">
+        <h2 className="text-[1.62rem] font-black leading-none tracking-tight text-sky-500 dark:text-sky-300 sm:text-[1.78rem] md:text-[2.25rem]">
             Modifica Risultati
-        </div>
-        <div className="py-4 text-gray-500 dark:text-gray-400 text-sm font-normal">
+        </h2>
+        <div className="mt-2 mb-6 text-gray-500 dark:text-gray-400 text-sm font-normal">
             In questa sezione puoi modificare i risultati già inseriti (ricalcola ELO, qualificati e vincitori)
         </div>
     </div>
