@@ -43,19 +43,28 @@ if (import.meta.env.PROD) {
     onRegisteredSW(swUrl, registration) {
       if (!registration) return;
 
-      registration.update();
+      const checkUpdate = () => {
+        registration.update().catch(console.error);
+      };
 
-      setInterval(() => {
-        registration.update();
-      }, 15 * 1000);
+      // Controlla gli aggiornamenti ogni 60 secondi
+      setInterval(checkUpdate, 60 * 1000);
 
+      // Controlla gli aggiornamenti quando l'app torna in primo piano
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          checkUpdate();
+        }
+      });
+
+      // Ricarica la pagina quando il nuovo service worker prende il controllo
+      let refreshing = false;
       navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (refreshing) return;
+        refreshing = true;
         window.location.reload();
       });
-    },
-    onNeedRefresh() {
-      updateSW(true);
-    },
+    }
   });
 }
 
