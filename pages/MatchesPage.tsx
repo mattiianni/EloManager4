@@ -51,7 +51,7 @@ const PlayerSelect: React.FC<{
 );
 
 const HistorySkeleton: React.FC = () => (
- <div className="space-y-4 animate-pulse px-4">
+ <div className="space-y-4 animate-pulse">
  <div className="h-12 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
  <div className="h-12 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
  <div className="h-12 rounded-lg bg-gray-200 dark:bg-gray-700"></div>
@@ -1434,7 +1434,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
 
 
  return (
- <div className="space-y-6 px-4">
+ <div className="space-y-6">
  <Card title={
  <div className="flex justify-between items-center w-full">
  <span>Inserisci Risultato Singolo</span>
@@ -1453,7 +1453,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </div>
  }>
  {isMatchFormOpen && (
- <form onSubmit={handleSubmit} className="space-y-6 px-4">
+ <form onSubmit={handleSubmit} className="space-y-6">
  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
  <div className="space-y-2 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
  <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Squadra 1</h4>
@@ -1493,7 +1493,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </div>
  }>
  {loading ? <HistorySkeleton /> : (
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {sortedTournamentNames.map(name => {
  const tournamentDays = tournamentsByName[name];
  const isExpanded = expandedItems.has(`name_${name}`);
@@ -1511,7 +1511,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }
  >
  {isExpanded && (
- <div className="space-y-3 px-4">
+ <div className="space-y-3">
  {tournamentDays.map(day => {
  const isDayExpanded = expandedItems.has(`day_${day.id}`);
  const tournamentDayDisplayName = getTournamentDisplayName(day, tournaments);
@@ -1733,7 +1733,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  Box {boxNum} - Campo {boxNum}
  </h4>
  </div>
- <div className="space-y-3 px-4">
+ <div className="space-y-3">
  {boxMatches.map(match => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
@@ -1795,7 +1795,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  Girone {gironeName}
  </h4>
  </div>
- <div className="space-y-3 px-4">
+ <div className="space-y-3">
  {gironeMatches.map(match => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
@@ -1882,10 +1882,10 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  onClose={() => setShowFinalsStandingsModal(false)} 
  title="Round Robin Completato!"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="p-4 bg-green-50 dark:bg-green-900 rounded-lg">
  <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">Classifica Round Robin</h3>
- <div className="space-y-2 px-4">
+ <div className="space-y-2">
  {roundRobinStandings.slice(0, 4).map((standing, index) => (
  <div key={index} className="flex justify-between items-center p-2 bg-white dark:bg-gray-800 rounded">
  <span className="font-medium">
@@ -1929,14 +1929,14 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  onClose={() => setShowGironiStandingsModal(false)} 
  title="Gironi Completati!"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="p-4 bg-green-50 dark:bg-green-900 rounded-lg">
  <h3 className="font-semibold text-green-800 dark:text-green-200 mb-2">Classifiche Gironi</h3>
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {gironiStandings.map((girone, gironeIdx) => (
  <div key={gironeIdx} className="bg-white dark:bg-gray-800 rounded-lg p-3">
  <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Girone {girone.gironeName}</h4>
- <div className="space-y-1 px-4">
+ <div className="space-y-1">
  {girone.standings.map((standing: any, index: number) => {
  const isQualified = index < 2; // Top 2 qualify for semifinals
  return (
@@ -2005,7 +2005,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }} 
  title="Finali - Round Robin + Finali"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="mb-4 p-3 bg-emerald-50 dark:bg-emerald-900 rounded-lg">
  <h3 className="font-semibold text-emerald-800 dark:text-emerald-200">Fase Finale</h3>
  <p className="text-sm text-emerald-700 dark:text-emerald-300">
@@ -2058,7 +2058,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </div>
  
  {/* Finals matches input */}
- <div className="space-y-6 px-4">
+ <div className="space-y-6">
  <h4 className="font-semibold text-gray-700 dark:text-gray-300">Partite Finali</h4>
  <div className="space-y-4 max-h-[30vh] overflow-y-auto p-1">
  {finalsMatches.map((match, index) => {
@@ -2138,11 +2138,11 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  onClose={() => setShowBeatBoxStandingsModal(false)} 
  title="📦 Classifiche Box Completate"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {beatBoxStandings.map((boxStanding, boxIdx) => (
  <div key={boxIdx} className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
  <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Box {boxStanding.boxNumber}</h4>
- <div className="space-y-2 px-4">
+ <div className="space-y-2">
  {boxStanding.standings.map((standing: any, index: number) => (
  <div key={index} className={`flex justify-between items-center p-2 rounded ${
  index < 2 
@@ -2210,7 +2210,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }} 
  title="📦 Beat the Box - Semifinali"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="mb-4 p-3 bg-purple-50 dark:bg-purple-900 rounded-lg">
  <h3 className="font-semibold text-purple-800 dark:text-purple-200">Semifinali</h3>
  <p className="text-sm text-purple-700 dark:text-purple-300">
@@ -2218,7 +2218,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </p>
  </div>
  
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {beatBoxSemifinalMatches.map((match, idx) => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
@@ -2332,7 +2332,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }} 
  title="📦 Beat the Box - Finali"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900 rounded-lg">
  <h3 className="font-semibold text-yellow-800 dark:text-yellow-200">Fase Finale</h3>
  <p className="text-sm text-yellow-700 dark:text-yellow-300">
@@ -2340,7 +2340,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </p>
  </div>
  
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {beatBoxFinalMatches.map((match, idx) => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
@@ -2421,7 +2421,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  onClose={() => !isSubmitting && setShowBeatBoxCompleteConfirm(false)}
  title="Confermi il completamento del torneo?"
  >
- <div className="space-y-3 px-4">
+ <div className="space-y-3">
  <p className="text-sm text-gray-600 dark:text-gray-300">
  Verranno salvate tutte le partite finali e aggiornati gli ELO.
  </p>
@@ -2464,7 +2464,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }}
  title="🏆 Beat the Box - Risultati Finali"
  >
- <div className="space-y-4 max-h-[70vh] overflow-y-auto px-4">
+ <div className="space-y-4 max-h-[70vh] overflow-y-auto">
  <div className="text-center p-3 bg-green-50 dark:bg-green-900 rounded">
  <h3 className="font-semibold text-green-800 dark:text-green-200">Torneo completato!</h3>
  <p className="text-sm text-green-700 dark:text-green-300">Gli ELO sono stati aggiornati. Ecco il riepilogo finale.</p>
@@ -2606,7 +2606,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }} 
  title="🏆 Gironi + Fase Finale - Semifinali"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="mb-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
  <h3 className="font-semibold text-gray-900 dark:text-white">Semifinali</h3>
  <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -2614,7 +2614,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </p>
  </div>
  
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {gironiSemifinalMatches.map((match, idx) => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
@@ -2732,7 +2732,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  }} 
  title="🏆 Gironi + Fase Finale - Finali"
  >
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  <div className="mb-4 p-3 bg-green-50 dark:bg-green-900 rounded-lg">
  <h3 className="font-semibold text-green-800 dark:text-green-200">Fase Finale</h3>
  <p className="text-sm text-green-700 dark:text-green-300">
@@ -2740,7 +2740,7 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ tournamentToOpen, setTourname
  </p>
  </div>
  
- <div className="space-y-4 px-4">
+ <div className="space-y-4">
  {gironiFinalMatches.map((match, idx) => {
  const team1 = match.team1.map(p => getPlayerById(p)!);
  const team2 = match.team2.map(p => getPlayerById(p)!);
