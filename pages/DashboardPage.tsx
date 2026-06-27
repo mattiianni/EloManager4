@@ -20,9 +20,13 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
         const activePlayers = players.length;
         const totalMatches = matches.length;
         const completedTournaments = tournaments.filter(t => t.status === 'completed').length;
-        const avgElo = players.length > 0
-            ? players.reduce((sum, p) => sum + p.currentElo, 0) / players.length
-            : 0;
+        let avgElo = 0;
+        if (players.length > 0) {
+            const sorted = [...players].sort((a, b) => b.currentElo - a.currentElo);
+            const top50Count = Math.max(1, Math.floor(sorted.length / 2));
+            const top50 = sorted.slice(0, top50Count);
+            avgElo = top50.reduce((sum, p) => sum + p.currentElo, 0) / top50Count;
+        }
 
         return { activePlayers, totalMatches, completedTournaments, avgElo };
     }, [players, matches, tournaments]);
@@ -169,7 +173,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                     { label: 'Giocatori', value: stats.activePlayers, icon: 'person.2.fill', color: 'var(--ios-systemBlue)' },
                     { label: 'Partite', value: stats.totalMatches, icon: 'sportscourt', color: 'var(--ios-systemGreen)' },
                     { label: 'Giornate', value: stats.completedTournaments, icon: 'calendar', color: 'var(--ios-systemOrange)' },
-                    { label: 'Avg ELO', value: stats.avgElo.toFixed(2), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
+                    { label: 'Media Top 50%', value: stats.avgElo.toFixed(2), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
                 ].map((kpi, idx) => (
                     <div key={idx} className="flex flex-col p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
                         <div className="flex items-center gap-2 mb-2">
