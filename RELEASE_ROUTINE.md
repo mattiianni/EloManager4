@@ -16,8 +16,8 @@
 5. Eseguire lo script `node scripts/generate-team-tournament-guide-pdf.mjs` per generare la guida in PDF aggiornata dei tornei a squadre, e rimuovere le vecchie versioni in `docs/`.
 6. Aggiornare `DESIGN.md` e `REBUILD_BRIEF_FOR_AI.txt` se ci sono cambi architetturali o nuovi flussi importanti.
 7. Eseguire build di verifica.
-8. Creare backup `.zip` di ripristino.
-9. Creare dump `.txt` completo file-per-file del codice.
+8. Creare backup `.zip` di ripristino e salvarlo sul Desktop dell'utente (`~/Desktop/`).
+9. Creare dump `.txt` completo file-per-file del codice e salvarlo sul Desktop dell'utente (`~/Desktop/`).
 10. Fare commit e push della versione locale corrente.
 
 ## Note operative
