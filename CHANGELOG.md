@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.1.11 — 2026-06-27
+### Modifiche Algoritmo ELO & UI
+- Risolto errore matematico di arrotondamento `Math.round()` che azzerava i decimali nel calcolo dei delta ELO, ripristinando la precisione decimale fluttuante cronologica partita per partita.
+- Aggiornata l'etichetta "Avg ELO" in Dashboard a "MEDIA ELO" calcolando in modo dinamico la sola media della Top 50% dei giocatori.
+- Corretta la UI in "Sorteggi" da "ELO Medio" a "ELO" per maggiore aderenza terminologica (essendo in realtà la stima combinata della coppia).
+- Sistemati i colori di testo in contrasto (testo invisibile) sui box di avviso informativi (`bg-ios-blue`).
 ## v4.1.10 — 2026-06-26
 ### Modifiche UI/UX & Fix
 - Logo Header Mobile: ricentrato in posizione assoluta e ridotto in altezza (-10%) per dare respiro alla UI senza rompere gli allineamenti.

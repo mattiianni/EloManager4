@@ -1,0 +1,133 @@
+[32m✅ [2026-06-27T12:54:37.076Z] [INFO][0m Database connected
+[2m{
+  "host": "ep-crimson-recipe-aglh7bqf-pooler.c-2.eu-central-1.aws.neon.tech",
+  "database": "neondb",
+  "ssl": "enabled"
+}[0m
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   [32m[1m🎾 PADEL ELO MANAGER - API SERVER[0m                  ║
+║                                                           ║
+║   Environment: [36mDEVELOPMENT                               [0m║
+║   Log Level:   [33mINFO                                      [0m║
+║   Log to File: [32mENABLED                                   [0m║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+        
+[32m✅ [2026-06-27T12:54:37.091Z] [INFO][0m Server started successfully
+[2m{
+  "port": "3002",
+  "url": "http://localhost:3002",
+  "database": "Neon PostgreSQL",
+  "environment": "development",
+  "mode": "Full-stack (Frontend + API)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.150Z] [INFO][0m Created new giornata linked to tournament series
+[2m{
+  "tournamentId": "188e4099-6195-49e6-bef7-f9d892fd4ee7",
+  "giornataName": "Esitiamo 2026 TEST",
+  "date": "2026-06-18T12:54:39.074Z",
+  "name": "Giornata 1 (torneotto)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.407Z] [INFO][0m 📈 Player 0846eef2: [32m1485.40 → 1492.80 (+7.40)[0m
+[2m{
+  "playerId": "0846eef2-84a6-4056-bca6-0900ff6a7ac3",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.510Z] [INFO][0m 📈 Player 6652fc74: [32m1537.29 → 1544.69 (+7.40)[0m
+[2m{
+  "playerId": "6652fc74-0499-4d57-9dd1-5c869044dc2c",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.605Z] [INFO][0m 📉 Player ba4fa281: [31m1516.89 → 1509.49 (-7.40)[0m
+[2m{
+  "playerId": "ba4fa281-6e7c-43ea-996d-9f815c6ff243",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.708Z] [INFO][0m 📉 Player b4612865: [31m1453.54 → 1446.14 (-7.40)[0m
+[2m{
+  "playerId": "b4612865-cbac-40d6-aed5-45c8d4ea3fef",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:39.758Z] [INFO][0m Created new giornata linked to tournament series
+[2m{
+  "tournamentId": "2420f42b-d45e-4f90-882e-04fd480f9d75",
+  "giornataName": "Esitiamo 2026 TEST",
+  "date": "2026-06-19T12:54:39.720Z",
+  "name": "Giornata 2 (americano)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.013Z] [INFO][0m 📈 Player 0846eef2: [32m1492.80 → 1499.86 (+7.06)[0m
+[2m{
+  "playerId": "0846eef2-84a6-4056-bca6-0900ff6a7ac3",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.115Z] [INFO][0m 📈 Player 6652fc74: [32m1544.69 → 1551.75 (+7.06)[0m
+[2m{
+  "playerId": "6652fc74-0499-4d57-9dd1-5c869044dc2c",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.213Z] [INFO][0m 📉 Player ba4fa281: [31m1509.49 → 1502.43 (-7.06)[0m
+[2m{
+  "playerId": "ba4fa281-6e7c-43ea-996d-9f815c6ff243",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.314Z] [INFO][0m 📉 Player b4612865: [31m1446.14 → 1439.07 (-7.06)[0m
+[2m{
+  "playerId": "b4612865-cbac-40d6-aed5-45c8d4ea3fef",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.351Z] [INFO][0m Created new giornata linked to tournament series
+[2m{
+  "tournamentId": "47ca3bae-aeab-45da-a2e1-393f8b929927",
+  "giornataName": "Esitiamo 2026 TEST",
+  "date": "2026-06-20T12:54:40.317Z",
+  "name": "Giornata 3 (beat_the_box)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.609Z] [INFO][0m 📈 Player 0846eef2: [32m1499.86 → 1506.60 (+6.74)[0m
+[2m{
+  "playerId": "0846eef2-84a6-4056-bca6-0900ff6a7ac3",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.708Z] [INFO][0m 📈 Player 6652fc74: [32m1551.75 → 1558.50 (+6.74)[0m
+[2m{
+  "playerId": "6652fc74-0499-4d57-9dd1-5c869044dc2c",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.804Z] [INFO][0m 📉 Player ba4fa281: [31m1502.43 → 1495.69 (-6.74)[0m
+[2m{
+  "playerId": "ba4fa281-6e7c-43ea-996d-9f815c6ff243",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.905Z] [INFO][0m 📉 Player b4612865: [31m1439.07 → 1432.33 (-6.74)[0m
+[2m{
+  "playerId": "b4612865-cbac-40d6-aed5-45c8d4ea3fef",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:40.942Z] [INFO][0m Created new giornata linked to tournament series
+[2m{
+  "tournamentId": "de5b3cd8-7fe7-40f2-9512-fb2c67c0caf9",
+  "giornataName": "Esitiamo 2026 TEST",
+  "date": "2026-06-21T12:54:40.908Z",
+  "name": "Giornata 4 (Round Robin + Finali)"
+}[0m
+[32m✅ [2026-06-27T12:54:41.203Z] [INFO][0m 📈 Player 0846eef2: [32m1506.60 → 1513.04 (+6.44)[0m
+[2m{
+  "playerId": "0846eef2-84a6-4056-bca6-0900ff6a7ac3",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:41.304Z] [INFO][0m 📈 Player 6652fc74: [32m1558.50 → 1564.94 (+6.44)[0m
+[2m{
+  "playerId": "6652fc74-0499-4d57-9dd1-5c869044dc2c",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:41.401Z] [INFO][0m 📉 Player ba4fa281: [31m1495.69 → 1489.25 (-6.44)[0m
+[2m{
+  "playerId": "ba4fa281-6e7c-43ea-996d-9f815c6ff243",
+  "reason": "tournament (global update)"
+}[0m
+[32m✅ [2026-06-27T12:54:41.503Z] [INFO][0m 📉 Player b4612865: [31m1432.33 → 1425.89 (-6.44)[0m
+[2m{
+  "playerId": "b4612865-cbac-40d6-aed5-45c8d4ea3fef",
+  "reason": "tournament (global update)"
+}[0m
