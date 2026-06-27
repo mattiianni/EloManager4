@@ -4611,7 +4611,7 @@ export const printTournamentStatistics = (stats: any) => {
             gray: { bg: '#f8fafc', border: '#94a3b8' },
         }[accent];
         return `
-            <div class="award-card" style="background: ${palette.bg}; border-color: ${palette.border};">
+            <div class="award-card avoid-break" style="background: ${palette.bg}; border-color: ${palette.border};">
                 <div class="award-title">${title}</div>
                 <div class="award-subtitle">${subtitle}</div>
                 ${entries}
@@ -4770,34 +4770,34 @@ export const printTournamentStatistics = (stats: any) => {
 
         <h3 style="background: #1e3a6e; color: #ffffff; padding: 6px 10px; font-size: 14px; font-weight: bold; border-radius: 6px 6px 0 0; margin: 0; text-transform: uppercase;">Informazioni generali</h3>
         <div class="info-grid" style=" padding: 8px; margin-top: 0; margin-bottom: 18px;">
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Periodo</div>
                 <div class="info-value" style="font-size: 11px;">${stats.periodo.inizio} — ${stats.periodo.fine}</div>
             </div>
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Giornate</div>
                 <div class="info-value">${stats.numeroGiornate}</div>
             </div>
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Partite</div>
                 <div class="info-value">${stats.totalePartite}</div>
             </div>
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Games</div>
                 <div class="info-value">${stats.totaleGamesDisputati}</div>
             </div>
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Media G/P</div>
                 <div class="info-value">${stats.mediaGamesPerPartita.toFixed(1)}</div>
             </div>
-            <div class="info-box">
+            <div class="info-box avoid-break">
                 <div class="info-label">Giocatori</div>
                 <div class="info-value">${stats.giocatoriPartecipanti}</div>
             </div>
         </div>
 
         <h3 style="background: #1e3a6e; color: #ffffff; padding: 6px 10px; font-size: 14px; font-weight: bold; border-radius: 6px 6px 0 0; margin: 0; text-transform: uppercase;">GIOCATORI - TOP 5</h3>
-        <table style="margin-top: 0; ">
+        <table class="avoid-break" style="margin-top: 0; ">
             <thead>
                 <tr>
                     <th style="text-align: center; width: 10%;">Pos</th>
@@ -4814,126 +4814,126 @@ export const printTournamentStatistics = (stats: any) => {
 
         
         <div class="stat-grid">
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Più Games Vinti</div>
                 <div style="padding: 8px;">
                     
                 ${gamesVintiEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Più Games Persi</div>
                 <div style="padding: 8px;">
                     
                 ${gamesPersiEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Coppia Più Frequente</div>
                 <div style="padding: 8px;">
                     
                 ${coppiaEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Serie Vittorie</div>
                 <div style="padding: 8px;">
                     
                 ${vittorieEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Upset</div>
                 <div style="padding: 8px;">
                     
                 ${upsetEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Maggior Guadagno ELO</div>
                 <div style="padding: 8px;">
                     
                 ${guadagnoEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Peggior Perdita ELO</div>
                 <div style="padding: 8px;">
                     
                 ${perditaEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Game Win Rate %</div>
                 <div style="padding: 8px;">
                     
                 ${gameWinRateEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Game Ratio</div>
                 <div style="padding: 8px;">
                     
                 ${gameRatioEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Partite Vinte</div>
                 <div style="padding: 8px;">
                     
                 ${partiteVinteEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">ELO per Partita</div>
                 <div style="padding: 8px;">
                     
                 ${eloPerPartitaEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">% Upset Riusciti</div>
                 <div style="padding: 8px;">
                     
                 ${upsetPercentageEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Miglior Coppia</div>
                 <div style="padding: 8px;">
                     
                 ${migliorCoppiaEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Serie Sconfitte</div>
                 <div style="padding: 8px;">
                     
                 ${serieSconfitteEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Resilienza</div>
                 <div style="padding: 8px;">
                     
                 ${resilienzaEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Form (Ultimi Match)</div>
                 <div style="padding: 8px;">
                     
                 ${formEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Clutch Performance</div>
                 <div style="padding: 8px;">
                     
                 ${clutchEntries}
                 </div>
             </div>
-            <div class="stat-card" style="">
+            <div class="stat-card avoid-break" style="">
                 <div class="stat-card-title" style="background: #1e3a6e; color: #fff; padding: 6px 8px; font-weight: bold; font-size: 11px; text-transform: uppercase; margin: 0;">Difesa Ferrea</div>
                 <div style="padding: 8px;">
                     
