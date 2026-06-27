@@ -4730,6 +4730,22 @@ export const printTournamentStatistics = (stats: any) => {
                 padding: 8px 10px;
                 text-align: center;
             }
+            
+            /* WebKit Print Fix for Grids */
+            @media print {
+                .info-grid { display: block; margin: 8px 0; }
+                .info-box { display: inline-block; width: 31%; box-sizing: border-box; vertical-align: top; margin-bottom: 8px; margin-right: 2%; }
+                .info-box:nth-child(3n) { margin-right: 0; }
+                
+                .stat-grid { display: block; margin: 8px 0; }
+                .stat-card { display: inline-block; width: 48%; box-sizing: border-box; vertical-align: top; margin-bottom: 8px; margin-right: 2%; }
+                .stat-card:nth-child(even) { margin-left: 0; margin-right: 0; }
+                
+                .award-grid { display: block; margin: 8px 0; }
+                .award-card { display: inline-block; width: 23%; box-sizing: border-box; vertical-align: top; margin-bottom: 8px; margin-right: 2%; }
+                .award-card:nth-child(4n) { margin-right: 0; }
+            }
+            
             .award-title {
                 font-size: 10px;
                 font-weight: bold;
