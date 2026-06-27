@@ -1253,101 +1253,38 @@ app.post('/api/admin/impersonate', requireAdmin, async (req, res) => {
     }
 });
 
-// POST /api/admin/recalculate-elos - Recalculate all players' current_elo from scratch (K=16)
+// POST /api/admin/recalculate-elos - Recalculate all players' current_elo from elo_history
 // If workspaceId is provided, only that workspace; otherwise ALL workspaces
 app.post('/api/admin/recalculate-elos', requireAdmin, async (req, res) => {
     try {
         const { workspaceId } = req.body;
 
-        // 1. Reset all players to 1500 ELO and delete all elo_history
-        if (workspaceId) {
-            await sql`DELETE FROM elo_history WHERE workspace_id = ${workspaceId}`;
-            await sql`UPDATE players SET current_elo = 1500 WHERE workspace_id = ${workspaceId}`;
-        } else {
-            await sql`DELETE FROM elo_history`;
-            await sql`UPDATE players SET current_elo = 1500`;
-        }
+        // Get players: all workspaces or just one
+        const players = workspaceId
+            ? await sql`SELECT id, name, surname, current_elo, workspace_id FROM players WHERE workspace_id = ${workspaceId}`
+            : await sql`SELECT id, name, surname, current_elo, workspace_id FROM players`;
 
-        // 2. Fetch all matches chronologically
-        let matches;
-        if (workspaceId) {
-            matches = await sql`
-                SELECT m.*, t.type as tournament_type
-                FROM matches m
-                JOIN tournaments t ON m.tournament_id = t.id
-                WHERE m.workspace_id = ${workspaceId} AND m.winner IS NOT NULL
-                ORDER BY t.date ASC, m.created_at ASC
+        const results = [];
+        for (const player of players) {
+            const historyResult = await sql`
+                SELECT COALESCE(SUM(delta), 0) as total_delta
+                FROM elo_history
+                WHERE player_id = ${player.id} AND workspace_id = ${player.workspace_id}
             `;
-        } else {
-            matches = await sql`
-                SELECT m.*, t.type as tournament_type
-                FROM matches m
-                JOIN tournaments t ON m.tournament_id = t.id
-                WHERE m.winner IS NOT NULL
-                ORDER BY t.date ASC, m.created_at ASC
-            `;
-        }
+            const totalDelta = parseFloat(historyResult[0].total_delta);
+            const correctElo = 1500 + totalDelta;
+            const oldElo = parseFloat(player.current_elo);
+            const diff = correctElo - oldElo;
 
-        // 3. Load all players into memory
-        const playersData = workspaceId
-            ? await sql`SELECT id, name, surname, workspace_id, 1500 as current_elo FROM players WHERE workspace_id = ${workspaceId}`
-            : await sql`SELECT id, name, surname, workspace_id, 1500 as current_elo FROM players`;
-            
-        const playersState = {};
-        for (const p of playersData) {
-            playersState[p.id] = p;
-        }
-
-        let recalculatedCount = 0;
-
-        // 4. Recalculate chronologically
-        for (const m of matches) {
-            const p1 = playersState[m.team1_p1_id];
-            const p2 = playersState[m.team1_p2_id];
-            const p3 = playersState[m.team2_p1_id];
-            const p4 = playersState[m.team2_p2_id];
-
-            if (!p1 || !p2 || !p3 || !p4) continue;
-
-            const t1Elo = (p1.current_elo + p2.current_elo) / 2;
-            const t2Elo = (p3.current_elo + p4.current_elo) / 2;
-            const score1 = m.winner === 'team1' ? 1 : (m.winner === 'team2' ? 0 : 0.5);
-
-            const { delta1, delta2 } = calculateEloChange(t1Elo, t2Elo, score1, m.tournament_type, m.phase);
-
-            // Update in-memory state
-            p1.current_elo += delta1;
-            p2.current_elo += delta1;
-            p3.current_elo += delta2;
-            p4.current_elo += delta2;
-
-            // Insert new history records
-            const historyInserts = [
-                { event_id: m.id, player_id: p1.id, elo_before: p1.current_elo - delta1, elo_after: p1.current_elo, delta: delta1, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
-                { event_id: m.id, player_id: p2.id, elo_before: p2.current_elo - delta1, elo_after: p2.current_elo, delta: delta1, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
-                { event_id: m.id, player_id: p3.id, elo_before: p3.current_elo - delta2, elo_after: p3.current_elo, delta: delta2, date: m.created_at, type: 'match', workspace_id: m.workspace_id },
-                { event_id: m.id, player_id: p4.id, elo_before: p4.current_elo - delta2, elo_after: p4.current_elo, delta: delta2, date: m.created_at, type: 'match', workspace_id: m.workspace_id }
-            ];
-
-            for (const row of historyInserts) {
-                await sql`
-                    INSERT INTO elo_history (event_id, player_id, elo_before, elo_after, delta, date, type, workspace_id)
-                    VALUES (${row.event_id}, ${row.player_id}, ${row.elo_before}, ${row.elo_after}, ${row.delta}, ${row.date}, ${row.type}, ${row.workspace_id})
-                `;
-            }
-            recalculatedCount++;
-        }
-
-        // 5. Save updated ELOs back to players table
-        for (const pId in playersState) {
-            const p = playersState[pId];
-            if (p.current_elo !== 1500) {
-                await sql`UPDATE players SET current_elo = ${p.current_elo} WHERE id = ${p.id}`;
+            if (Math.abs(diff) > 0.001) {
+                await sql`UPDATE players SET current_elo = ${correctElo} WHERE id = ${player.id}`;
+                results.push({ name: `${player.name} ${player.surname}`, workspaceId: player.workspace_id, oldElo, newElo: correctElo, diff });
+                logger.info('ELO recalculated', { player: `${player.name} ${player.surname}`, oldElo, newElo: correctElo, diff });
             }
         }
 
-        logger.info('Recalculate ELOs completed', { scope: workspaceId || 'ALL', matchesRecalculated: recalculatedCount });
-        res.json({ success: true, recalculatedCount });
+        logger.info('Recalculate ELOs completed', { scope: workspaceId || 'ALL', corrected: results.length });
+        res.json({ success: true, corrected: results.length, changes: results });
     } catch (error) {
         logger.error('Failed to recalculate ELOs', error);
         res.status(500).json({ message: 'Errore nel ricalcolo ELO', error: error.message });
