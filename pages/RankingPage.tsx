@@ -306,7 +306,15 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                                 )}
                                 
                                 <HIGListRow
-                                    label={`${player.name} ${player.surname}`}
+                                    label={
+                                        <div className="flex justify-between items-center w-full">
+                                            <span className="truncate pr-2">{`${player.name} ${player.surname}`}</span>
+                                            <div className="flex items-center gap-2 shrink-0">
+                                                <span className="font-semibold text-ios-blue text-[17px]">{player.currentElo.toFixed(0)}</span>
+                                                {getTrendIcon(player.lastDelta)}
+                                            </div>
+                                        </div>
+                                    }
                                     subtitle={
                                         <div className="flex items-center justify-between mt-0.5 w-full">
                                             <span className="text-ios-label-secondary text-[13px]">
@@ -323,12 +331,7 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                                         </div>
                                     }
                                     icon={<div className="flex h-full w-full items-center justify-center">{getMedalIcon(idx)}</div>}
-                                    detail={
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-semibold text-ios-blue">{player.currentElo.toFixed(0)}</span>
-                                            {getTrendIcon(player.lastDelta)}
-                                        </div>
-                                    }
+                                    detail={null}
                                     accessory={null}
                                 />
 

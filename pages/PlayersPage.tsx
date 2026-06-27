@@ -159,7 +159,12 @@ const PlayersPage: React.FC = () => {
                         sortedPlayers.map(player => (
                             <HIGListRow
                                 key={player.id}
-                                label={sortIndex === 1 ? `${player.surname} ${player.name}` : `${player.name} ${player.surname}`}
+                                label={
+                                    <div className="flex justify-between items-center w-full">
+                                        <span className="truncate pr-2">{sortIndex === 1 ? `${player.surname} ${player.name}` : `${player.name} ${player.surname}`}</span>
+                                        <span className="font-semibold text-ios-blue text-[17px] shrink-0">{player.currentElo.toFixed(0)}</span>
+                                    </div>
+                                }
                                 subtitle={
                                     <div className="flex items-center justify-between mt-0.5">
                                         <span className="text-ios-label-secondary text-[13px]">{player.position}</span>
@@ -170,7 +175,7 @@ const PlayersPage: React.FC = () => {
                                         </div>
                                     </div>
                                 }
-                                detail={<span className="font-semibold text-ios-blue text-base">{player.currentElo.toFixed(0)}</span>}
+                                detail={null}
                                 icon={
                                     <div className="flex h-full w-full items-center justify-center bg-ios-fill text-ios-label">
                                         <SFIcon name="person.fill" size={16} />
