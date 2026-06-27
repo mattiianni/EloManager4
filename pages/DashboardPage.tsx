@@ -173,7 +173,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                     { label: 'Giocatori', value: stats.activePlayers, icon: 'person.2.fill', color: 'var(--ios-systemBlue)' },
                     { label: 'Partite', value: stats.totalMatches, icon: 'sportscourt', color: 'var(--ios-systemGreen)' },
                     { label: 'Giornate', value: stats.completedTournaments, icon: 'calendar', color: 'var(--ios-systemOrange)' },
-                    { label: 'Media Top 50%', value: stats.avgElo.toFixed(2), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
+                    { label: 'MEDIA ELO', value: stats.avgElo.toFixed(2), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
                 ].map((kpi, idx) => (
                     <div key={idx} className="flex flex-col p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
                         <div className="flex items-center gap-2 mb-2">
