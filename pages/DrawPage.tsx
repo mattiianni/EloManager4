@@ -1854,7 +1854,7 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                         </div>
                                         <div className="text-right">
                                             <p className="font-bold text-sky-600 dark:text-sky-400">{((pair[0].currentElo + pair[1].currentElo) / 2).toFixed(2)}</p>
-                                            <p className="text-xs text-gray-500">ELO Medio</p>
+                                            <p className="text-xs text-gray-500">ELO</p>
                                         </div>
                                     </div>
                                 ))}
