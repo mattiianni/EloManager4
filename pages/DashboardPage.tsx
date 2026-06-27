@@ -169,7 +169,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                     { label: 'Giocatori', value: stats.activePlayers, icon: 'person.2.fill', color: 'var(--ios-systemBlue)' },
                     { label: 'Partite', value: stats.totalMatches, icon: 'sportscourt', color: 'var(--ios-systemGreen)' },
                     { label: 'Giornate', value: stats.completedTournaments, icon: 'calendar', color: 'var(--ios-systemOrange)' },
-                    { label: 'Avg ELO', value: stats.avgElo.toFixed(0), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
+                    { label: 'Avg ELO', value: stats.avgElo.toFixed(2), icon: 'chart.bar.fill', color: 'var(--ios-systemIndigo)' }
                 ].map((kpi, idx) => (
                     <div key={idx} className="flex flex-col p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm">
                         <div className="flex items-center gap-2 mb-2">
@@ -203,7 +203,7 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <div className="flex items-center gap-2">
-                                            <span className="font-bold text-sky-600 dark:text-sky-400">{p.currentElo.toFixed(0)}</span>
+                                            <span className="font-bold text-sky-600 dark:text-sky-400">{p.currentElo.toFixed(2)}</span>
                                             {getTrendIcon(p.lastDelta)}
                                         </div>
                                         <SFIcon name="chevron.right" size={16} color="var(--ios-systemGray3)" />

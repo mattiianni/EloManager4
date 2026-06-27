@@ -706,7 +706,7 @@ const BeatTheBoxFlow: React.FC<BeatTheBoxFlowProps> = ({
  {box.players.map((player, idx) => (
  <div key={idx} className="text-sm">
  • {player.name} {player.surname}
- <span className="text-xs text-gray-500 ml-1">(ELO: {player.currentElo.toFixed(0)})</span>
+ <span className="text-xs text-gray-500 ml-1">(ELO: {player.currentElo.toFixed(2)})</span>
  </div>
  ))}
  </div>

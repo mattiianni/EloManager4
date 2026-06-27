@@ -1766,7 +1766,7 @@ const TournamentFlow: React.FC<TournamentFlowProps> = ({ pairs, onFinish, presel
  />
  <span className="text-sm">
  {pair[0].name} {pair[0].surname} / {pair[1].name} {pair[1].surname}
- <span className="text-xs text-gray-500 ml-2">(ELO medio: {avgElo.toFixed(0)})</span>
+ <span className="text-xs text-gray-500 ml-2">(ELO medio: {avgElo.toFixed(2)})</span>
  </span>
  </label>
  );

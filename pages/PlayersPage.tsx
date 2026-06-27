@@ -162,7 +162,7 @@ const PlayersPage: React.FC = () => {
                                 label={
                                     <div className="flex justify-between items-center w-full">
                                         <span className="truncate pr-2">{sortIndex === 1 ? `${player.surname} ${player.name}` : `${player.name} ${player.surname}`}</span>
-                                        <span className="font-semibold text-ios-blue text-[17px] shrink-0">{player.currentElo.toFixed(0)}</span>
+                                        <span className="font-semibold text-ios-blue text-[17px] shrink-0">{player.currentElo.toFixed(2)}</span>
                                     </div>
                                 }
                                 subtitle={

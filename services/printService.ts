@@ -511,7 +511,7 @@ export const printEloChart = (
         const val = yMin + (yRange * i / numYTicks);
         const y = toY(val);
         svg += `<line x1="${pad.left}" y1="${y.toFixed(1)}" x2="${svgWidth - pad.right}" y2="${y.toFixed(1)}" stroke="#e0e0e0" stroke-dasharray="4,3"/>`;
-        svg += `<text x="${pad.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="#666" font-size="11" font-family="sans-serif">${Math.round(val)}</text>`;
+        svg += `<text x="${pad.left - 10}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="#666" font-size="11" font-family="sans-serif">${Number(val).toFixed(2)}</text>`;
     }
 
     // Vertical grid lines + X labels
@@ -566,7 +566,7 @@ export const printEloChart = (
             const lastPt = pts[pts.length - 1];
             const player = players.find(p => p.id === pid);
             const surname = player ? player.surname : '';
-            svg += `<text x="${(lastPt.x + 6).toFixed(1)}" y="${(lastPt.y + 4).toFixed(1)}" fill="${color}" font-size="9" font-weight="bold" font-family="sans-serif">${Math.round(last[pid])} - ${surname}</text>`;
+            svg += `<text x="${(lastPt.x + 6).toFixed(1)}" y="${(lastPt.y + 4).toFixed(1)}" fill="${color}" font-size="9" font-weight="bold" font-family="sans-serif">${Number(last[pid]).toFixed(2)} - ${surname}</text>`;
         }
     });
 
@@ -4457,9 +4457,9 @@ export const printTournamentStatistics = (stats: any) => {
             <tr>
                 <td style="text-align: center;">${idx + 1}°</td>
                 <td>${entry.player.name} ${entry.player.surname}</td>
-                <td style="text-align: center; font-weight: bold;">${entry.eloTorneo.toFixed(0)}</td>
+                <td style="text-align: center; font-weight: bold;">${entry.eloTorneo.toFixed(2)}</td>
                 <td style="text-align: center; font-weight: bold; color: ${varColor};">
-                    ${varSign}${entry.variazioneElo.toFixed(0)}
+                    ${varSign}${entry.variazioneElo.toFixed(2)}
                 </td>
                 <td style="text-align: center;">${entry.gamesWon} / ${entry.gamesLost}</td>
             </tr>
@@ -5295,7 +5295,7 @@ export const printBeatTheBoxBlank = (
         
         const playersHtml = box.players.map((player, idx) => `
             <div style="font-size: 10px; color: #555; margin: 2px 0;">
-                ${idx + 1}. ${player.name} ${player.surname} <span style="color: #999;">(ELO: ${player.currentElo.toFixed(0)})</span>
+                ${idx + 1}. ${player.name} ${player.surname} <span style="color: #999;">(ELO: ${player.currentElo.toFixed(2)})</span>
             </div>
         `).join('');
         
@@ -6346,7 +6346,7 @@ export const printPlayerProfiles = (
             const val = minElo + (range * i / steps);
             const y = yScale(val);
             gridLines.push(`<line x1="${pad.left}" y1="${y.toFixed(1)}" x2="${width - pad.right}" y2="${y.toFixed(1)}" stroke="#e5e7eb" stroke-width="0.5" />`);
-            gridLabels.push(`<text x="${pad.left - 4}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="7" fill="#666">${Math.round(val)}</text>`);
+            gridLabels.push(`<text x="${pad.left - 4}" y="${(y + 3).toFixed(1)}" text-anchor="end" font-size="7" fill="#666">${Number(val).toFixed(2)}</text>`);
         }
 
         // X-axis labels (show max ~10 evenly spaced)
@@ -6591,7 +6591,7 @@ export const printPlayerProfiles = (
                         <div style="font-size:10px;color:#666;">Posizione: ${p.position} &middot; Ranking: #${data.rank} &middot; Giornate giocate: ${data.tournamentsPlayed}</div>
                     </div>
                     <div style="text-align:right;">
-                        <div style="font-size:28px;font-weight:bold;color:#1e3a6e;">${p.currentElo.toFixed(0)}</div>
+                        <div style="font-size:28px;font-weight:bold;color:#1e3a6e;">${p.currentElo.toFixed(2)}</div>
                         <div style="font-size:11px;font-weight:bold;color:${deltaColor};">${deltaSign}${data.lastDelta.toFixed(1)} ultimo evento</div>
                     </div>
                 </div>
@@ -6624,7 +6624,7 @@ export const printPlayerProfiles = (
                         <div class="stat-label">Best Streak</div>
                     </div>
                     <div class="stat-box">
-                        <div class="stat-value" style="color:#1e3a6e;">${data.peakElo.toFixed(0)}</div>
+                        <div class="stat-value" style="color:#1e3a6e;">${data.peakElo.toFixed(2)}</div>
                         <div class="stat-label">ELO Massimo</div>
                     </div>
                     <div class="stat-box">

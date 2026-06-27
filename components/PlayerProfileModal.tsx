@@ -227,7 +227,7 @@ const PlayerProfileModal: React.FC<PlayerProfileModalProps> = ({ player, onClose
                 <div className="flex items-center justify-between px-6 py-2 border-b border-[var(--ios-separator)]">
                     <div className="flex items-center gap-3">
                         <span className="text-lg font-bold text-sky-600 dark:text-sky-400">
-                            ELO: {player.currentElo.toFixed(0)}
+                            ELO: {player.currentElo.toFixed(2)}
                         </span>
                         {stats && stats.lastDelta > 0 && <ArrowUpIcon className="h-5 w-5 text-green-500" />}
                         {stats && stats.lastDelta < 0 && <ArrowDownIcon className="h-5 w-5 text-red-500" />}
@@ -257,7 +257,7 @@ const PlayerProfileModal: React.FC<PlayerProfileModalProps> = ({ player, onClose
                                             type="number"
                                             domain={['dataMin - 20', 'dataMax + 20']}
                                             stroke={axisStrokeColor}
-                                            tickFormatter={(v) => String(Math.round(v))}
+                                            tickFormatter={(v) => Number(v).toFixed(2)}
                                         />
                                         <Tooltip content={<CustomTooltip theme={theme} chartData={eloChartData} />} />
                                         <Line

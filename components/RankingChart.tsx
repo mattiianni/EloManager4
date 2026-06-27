@@ -263,7 +263,7 @@ const RankingChart: React.FC<RankingChartProps> = ({ theme, selectedSeriesKey })
                                         type="number" 
                                         domain={['dataMin - 20', 'dataMax + 20']} 
                                         stroke={axisStrokeColor}
-                                        tickFormatter={(tick) => String(Math.round(tick))}
+                                        tickFormatter={(tick) => Number(tick).toFixed(2)}
                                     />
                                     <Tooltip content={<CustomTooltip theme={theme} />} />
                                     <Legend

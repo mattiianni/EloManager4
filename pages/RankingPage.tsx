@@ -310,7 +310,7 @@ const RankingPage: React.FC<RankingPageProps> = ({ theme }) => {
                                         <div className="flex justify-between items-center w-full">
                                             <span className="truncate pr-2">{`${player.name} ${player.surname}`}</span>
                                             <div className="flex items-center gap-2 shrink-0">
-                                                <span className="font-semibold text-ios-blue text-[17px]">{player.currentElo.toFixed(0)}</span>
+                                                <span className="font-semibold text-ios-blue text-[17px]">{player.currentElo.toFixed(2)}</span>
                                                 {getTrendIcon(player.lastDelta)}
                                             </div>
                                         </div>

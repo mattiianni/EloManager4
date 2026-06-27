@@ -829,7 +829,7 @@ const StatistichePage: React.FC = () => {
                     (match.winner === 'team2' && team2EloAvg < team1EloAvg - 20)) {
                     const winningTeam = match.winner === 'team1' ? team1Players : team2Players;
                     const losingTeam = match.winner === 'team1' ? team2Players : team1Players;
-                    const diffElo = Math.abs(team1EloAvg - team2EloAvg).toFixed(0);
+                    const diffElo = Math.abs(team1EloAvg - team2EloAvg).toFixed(2);
                     upsets.push(
                         `${winningTeam[0].name} & ${winningTeam[1].name} vs ${losingTeam[0].name} & ${losingTeam[1].name} (Δ${diffElo})`
                     );
@@ -1593,9 +1593,9 @@ const StatistichePage: React.FC = () => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col items-end text-right">
-                                                            <span className="font-bold text-gray-900 dark:text-white">{entry.eloTorneo.toFixed(0)} ELO</span>
+                                                            <span className="font-bold text-gray-900 dark:text-white">{entry.eloTorneo.toFixed(2)} ELO</span>
                                                             <span className={`text-xs font-semibold ${entry.variazioneElo >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                                                                {entry.variazioneElo >= 0 ? '+' : ''}{entry.variazioneElo.toFixed(0)}
+                                                                {entry.variazioneElo >= 0 ? '+' : ''}{entry.variazioneElo.toFixed(2)}
                                                             </span>
                                                         </div>
                                                     </div>
