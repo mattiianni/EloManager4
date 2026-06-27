@@ -882,14 +882,14 @@ export const printRanking = (
         <table>
             <thead>
                 <tr>
-                    <th style="text-align: center;">Rank</th>
-                    <th>Player & ELO History</th>
-                    <th>ELO</th>
-                    <th style="text-align: center;">Last Δ</th>
-                    <th style="text-align: center;">Played</th>
-                    <th style="text-align: center;">Won</th>
-                    <th style="text-align: center;">Games (W-L)</th>
-                    <th style="text-align: center;">Win %</th>
+                    <th style="text-align: center; width: 5%;">Rank</th>
+                    <th style="width: 45%;">Player & ELO History</th>
+                    <th style="width: 10%;">ELO</th>
+                    <th style="text-align: center; width: 8%;">Last Δ</th>
+                    <th style="text-align: center; width: 8%;">Played</th>
+                    <th style="text-align: center; width: 8%;">Won</th>
+                    <th style="text-align: center; width: 8%;">Games (W-L)</th>
+                    <th style="text-align: center; width: 8%;">Win %</th>
                 </tr>
             </thead>
             <tbody>
