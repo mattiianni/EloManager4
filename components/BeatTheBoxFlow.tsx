@@ -612,7 +612,7 @@ const BeatTheBoxFlow: React.FC<BeatTheBoxFlowProps> = ({
  >
  <div className="space-y-4 px-4">
  {boxStandings.map((box) => (
- <div key={box.boxNumber} className="p-4 bg-ios-blue rounded-lg">
+ <div key={box.boxNumber} className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-ios-blue/20">
  <h4 className="font-semibold text-ios-blue dark:text-ios-blue mb-3">Box {box.boxNumber}</h4>
  <div className="space-y-2 px-4">
  {box.standings.map((s: any, idx: number) => (
@@ -795,7 +795,7 @@ const BeatTheBoxFlow: React.FC<BeatTheBoxFlowProps> = ({
  <>
  <Card title="Beat the Box - Semifinali">
  <div className="space-y-6 px-4">
- <div className="bg-ios-blue p-4 rounded-lg mb-6">
+ <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mb-6 border border-ios-blue/20">
  <h3 className="font-semibold text-lg mb-2">🏆 Qualificati alle Semifinali</h3>
  <p className="text-sm text-gray-600 dark:text-gray-300">
  I primi 2 classificati di ogni box si sfidano nelle semifinali

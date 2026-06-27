@@ -1961,7 +1961,7 @@ const TournamentFlow: React.FC<TournamentFlowProps> = ({ pairs, onFinish, presel
  return (
  <Card title="Classifiche Gironi">
  <div className="space-y-6 px-4">
- <div className="mb-4 p-4 bg-ios-blue rounded-lg border border-ios-blue dark:border-ios-blue">
+ <div className="mb-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-ios-blue">
  <h3 className="font-semibold text-ios-blue dark:text-ios-blue mb-2">Fase Gironi Completata!</h3>
  <p className="text-sm text-ios-blue dark:text-ios-blue">
  Ecco le classifiche finali dei gironi. Le squadre qualificate per le semifinali sono evidenziate in verde.
@@ -2081,7 +2081,7 @@ const TournamentFlow: React.FC<TournamentFlowProps> = ({ pairs, onFinish, presel
  if (!team1Pair || !team2Pair) return null;
  
  return (
- <div key={idx} className="bg-ios-blue p-4 rounded-lg border-2 border-ios-blue dark:border-ios-blue">
+ <div key={idx} className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-2 border-ios-blue">
  <h4 className="font-semibold mb-3 text-ios-blue dark:text-ios-blue">Semifinale {idx + 1}</h4>
  <div className="grid grid-cols-3 items-center gap-4">
  <div className="text-sm">
@@ -2612,7 +2612,7 @@ const TournamentFlow: React.FC<TournamentFlowProps> = ({ pairs, onFinish, presel
  }>
  {isRoundRobinFinali ? (
  <div>
- <div className="mb-4 p-3 bg-ios-blue rounded-lg">
+ <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-ios-blue/20">
  <h3 className="font-semibold text-ios-blue dark:text-ios-blue">Round Robin - Fase a Gironi</h3>
  <p className="text-sm text-ios-blue dark:text-ios-blue">Inserisci i risultati di tutte le partite. Le prime 4 squadre passeranno alle finali.</p>
  </div>
