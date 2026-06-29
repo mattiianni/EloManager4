@@ -40,6 +40,29 @@ const TEAM_TOURNAMENT_FINAL_PHASE_LABELS: Record<RoundRobinFinalPhase, string> =
     'QUARTI, SEMIFINALI E FINALI': 'Quarti, semifinali e finali',
 };
 
+const levenshtein = (a: string, b: string): number => {
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
+    }
+    for (let j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+    }
+    for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1)
+                );
+            }
+        }
+    }
+    return matrix[b.length][a.length];
+};
+
 const ParticipantListSkeleton = () => (
     <div className="space-y-2 animate-pulse pr-2 max-h-96 overflow-y-auto">
         {[...Array(8)].map((_, i) => (
@@ -673,6 +696,20 @@ const DrawPage: React.FC<DrawPageProps> = ({
             setError('Inserisci il nome squadra.');
             return;
         }
+        
+        // Verifica frontend Levenshtein prima del submit
+        for (let i = 0; i < editTeamPlayers.length; i++) {
+            if (checkPlayerPlayed(i)) {
+                const orig = teamTournamentTeamToEdit.players[i]?.surname?.trim().toLowerCase() || '';
+                const curr = editTeamPlayers[i].surname.trim().toLowerCase();
+                const dist = levenshtein(orig, curr);
+                const limit = Math.max(2, Math.floor(orig.length * 0.20));
+                if (dist > limit) {
+                    setError(`La modifica del cognome per il giocatore ${i+1} supera il 20% consentito.`);
+                    return;
+                }
+            }
+        }
 
         setIsSavingTeamTournamentTeam(true);
         setError(null);
@@ -1179,6 +1216,20 @@ const DrawPage: React.FC<DrawPageProps> = ({
                             <p className="font-semibold text-gray-900 dark:text-white">Giocatori</p>
                             {editTeamPlayers.map((player, index) => {
                                 const isPlayed = checkPlayerPlayed(index);
+                                let surnameError = '';
+                                let isSurnameValid = false;
+                                if (isPlayed && teamTournamentTeamToEdit) {
+                                    const orig = teamTournamentTeamToEdit.players[index]?.surname?.trim().toLowerCase() || '';
+                                    const curr = player.surname.trim().toLowerCase();
+                                    const dist = levenshtein(orig, curr);
+                                    const limit = Math.max(2, Math.floor(orig.length * 0.20));
+                                    if (dist > limit) {
+                                        surnameError = `Modifica troppo ampia (max ${limit} caratteri)`;
+                                    } else if (dist > 0) {
+                                        isSurnameValid = true; // Modificato ma valido
+                                    }
+                                }
+
                                 return (
                                 <div key={index} className="space-y-2">
                                     <div className="text-sm font-semibold text-gray-500 dark:text-gray-400">
@@ -1197,22 +1248,39 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                             />
                                         </div>
                                         <div>
-                                            <label className="flex items-center text-xs font-medium text-gray-500 dark:text-gray-400">
-                                                Cognome
-                                                {isPlayed && (
-                                                    <span className="ml-1 inline-flex items-center text-amber-600 dark:text-amber-500" title="Il cognome è protetto perché il giocatore ha già disputato partite nel torneo. Sono permesse solo piccole correzioni (max 20%).">
-                                                        <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                                                        protetto
-                                                    </span>
+                                            <div className="flex items-center justify-between">
+                                                <label className="flex items-center text-xs font-medium text-gray-500 dark:text-gray-400">
+                                                    Cognome
+                                                    {isPlayed && (
+                                                        <span className="ml-1 inline-flex items-center text-amber-600 dark:text-amber-500" title="Il cognome è protetto perché il giocatore ha già disputato partite nel torneo. Sono permesse solo piccole correzioni (max 20%).">
+                                                            <svg className="w-3 h-3 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                                            protetto
+                                                        </span>
+                                                    )}
+                                                </label>
+                                            </div>
+                                            <div className="relative mt-1">
+                                                <input
+                                                    type="text"
+                                                    value={player.surname}
+                                                    onChange={e => handleTeamPlayerChange(index, 'surname', e.target.value)}
+                                                    className={`block w-full bg-white dark:bg-gray-700 border rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm disabled:opacity-50 disabled:bg-gray-100 dark:disabled:bg-gray-800 ${
+                                                        surnameError ? 'border-red-500 focus:ring-red-500 focus:border-red-500 text-red-600' : 'border-gray-300 dark:border-gray-600'
+                                                    }`}
+                                                    disabled={isSavingTeamTournamentTeam}
+                                                />
+                                                {isSurnameValid && !surnameError && (
+                                                    <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                        <span className="text-sky-500 flex items-center bg-sky-50 dark:bg-sky-900/30 px-1.5 py-0.5 rounded text-xs font-medium border border-sky-200 dark:border-sky-700">
+                                                            <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                                            Valido
+                                                        </span>
+                                                    </div>
                                                 )}
-                                            </label>
-                                            <input
-                                                type="text"
-                                                value={player.surname}
-                                                onChange={e => handleTeamPlayerChange(index, 'surname', e.target.value)}
-                                                className={`mt-1 block w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm disabled:opacity-50 disabled:bg-gray-100 dark:disabled:bg-gray-800 ${error && isPlayed ? 'border-red-300 dark:border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
-                                                disabled={isSavingTeamTournamentTeam}
-                                            />
+                                            </div>
+                                            {surnameError && (
+                                                <p className="mt-1 text-xs text-red-600 dark:text-red-400 font-medium">{surnameError}</p>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
