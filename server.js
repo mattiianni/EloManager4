@@ -2848,8 +2848,24 @@ app.put('/api/team-tournaments/:tournamentId/teams/:teamId', async (req, res) =>
             
             if (playedPlayers.has(origKey)) {
                 const updated = normalizedPlayers[i];
-                if (!updated || updated.name.trim().toLowerCase() !== orig.name.trim().toLowerCase() || updated.surname.trim().toLowerCase() !== orig.surname.trim().toLowerCase()) {
-                    return res.status(400).json({ message: `Non puoi modificare il nome di ${orig.name} ${orig.surname} perché ha già giocato delle partite nel torneo.` });
+                if (!updated) continue;
+
+                const oldSurnameT = orig.surname.trim().toLowerCase();
+                const newSurnameT = updated.surname.trim().toLowerCase();
+
+                // Nome: sempre modificabile liberamente
+                // Cognome: Levenshtein 20% con salvacondotto <= 2 caratteri
+                if (newSurnameT !== oldSurnameT) {
+                    const dist = levenshtein(oldSurnameT, newSurnameT);
+                    const maxLen = Math.max(orig.surname.trim().length, updated.surname.trim().length);
+                    const changeRatio = dist / maxLen;
+                    if (dist > 2 && changeRatio > 0.20) {
+                        return res.status(400).json({
+                            message: `Il cognome di ${orig.name} ${orig.surname} non può essere modificato radicalmente (variazione: ${Math.round(changeRatio * 100)}%, distanza: ${dist} caratteri). Solo correzioni ortografiche minori sono consentite.`,
+                            levenshteinDistance: dist,
+                            changeRatio: Math.round(changeRatio * 100)
+                        });
+                    }
                 }
             }
         }
