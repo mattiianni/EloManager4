@@ -1582,6 +1582,20 @@ app.post('/api/players', async (req, res) => {
     }
 });
 
+// Helper: Levenshtein distance (inline, no external dependencies)
+function levenshtein(a, b) {
+    const m = a.length, n = b.length;
+    const dp = Array.from({ length: m + 1 }, (_, i) =>
+        Array.from({ length: n + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+    );
+    for (let i = 1; i <= m; i++)
+        for (let j = 1; j <= n; j++)
+            dp[i][j] = a[i - 1] === b[j - 1]
+                ? dp[i - 1][j - 1]
+                : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    return dp[m][n];
+}
+
 // PUT /api/players - Update player
 app.put('/api/players', async (req, res) => {
     try {
@@ -1590,15 +1604,47 @@ app.put('/api/players', async (req, res) => {
             return res.status(400).json({ message: 'Missing required fields' });
         }
 
-        const playerResult = await sql`SELECT current_elo FROM players WHERE id = ${id} AND workspace_id = ${req.workspaceId}`;
+        const playerResult = await sql`SELECT name, surname, current_elo FROM players WHERE id = ${id} AND workspace_id = ${req.workspaceId}`;
         if (playerResult.length === 0) {
             return res.status(404).json({ message: 'Player not found' });
         }
         const oldElo = playerResult[0].current_elo;
+        const oldSurname = playerResult[0].surname;
+        const newSurname = surname.trim();
+
+        // --- Levenshtein 20% surname protection ---
+        // Only enforced when the player has already played at least one match.
+        // Nome (first name) is always freely editable.
+        if (newSurname.toLowerCase() !== oldSurname.toLowerCase()) {
+            const matchCount = await sql`
+                SELECT COUNT(*) AS cnt FROM matches
+                WHERE (team1_p1_id = ${id} OR team1_p2_id = ${id} OR team2_p1_id = ${id} OR team2_p2_id = ${id})
+                  AND workspace_id = ${req.workspaceId}
+            `;
+            const hasMatches = parseInt(matchCount[0].cnt) > 0;
+
+            if (hasMatches) {
+                const dist = levenshtein(oldSurname.toLowerCase(), newSurname.toLowerCase());
+                const maxLen = Math.max(oldSurname.length, newSurname.length);
+                const changeRatio = dist / maxLen;
+
+                const LEVENSHTEIN_SAFEGUARD = 2;  // always allow minor typo fixes (<=2 chars)
+                const RATIO_MAX = 0.20;            // 20% maximum change allowed
+
+                if (dist > LEVENSHTEIN_SAFEGUARD && changeRatio > RATIO_MAX) {
+                    return res.status(400).json({
+                        message: `Il cognome non può essere modificato radicalmente. La modifica "${oldSurname}" → "${newSurname}" supera il limite del 20% (variazione: ${Math.round(changeRatio * 100)}%, distanza: ${dist} caratteri). Solo correzioni ortografiche minori sono consentite.`,
+                        levenshteinDistance: dist,
+                        changeRatio: Math.round(changeRatio * 100)
+                    });
+                }
+            }
+        }
+        // --- End Levenshtein check ---
 
         await sql`
             UPDATE players
-            SET name = ${name}, surname = ${surname}, position = ${position}, current_elo = ${currentElo}
+            SET name = ${name.trim()}, surname = ${newSurname}, position = ${position}, current_elo = ${currentElo}
             WHERE id = ${id} AND workspace_id = ${req.workspaceId}
         `;
 

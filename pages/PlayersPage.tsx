@@ -30,6 +30,7 @@ const PlayersPage: React.FC = () => {
     const [editPosition, setEditPosition] = useState<FieldPosition>(FieldPosition.Indifferente);
     const [editElo, setEditElo] = useState('');
     const [editTournamentId, setEditTournamentId] = useState<string>('');
+    const [editSurnameError, setEditSurnameError] = useState<string | null>(null);
 
     // Profile State
     const [profilePlayer, setProfilePlayer] = useState<Player | null>(null);
@@ -41,8 +42,16 @@ const PlayersPage: React.FC = () => {
             setEditPosition(playerToEdit.position);
             setEditElo(playerToEdit.currentElo.toFixed(2));
             setEditTournamentId('');
+            setEditSurnameError(null);
         }
     }, [playerToEdit]);
+
+    // Determine if the player being edited has played at least one match
+    const playerHasMatches = playerToEdit
+        ? matches.some(m =>
+            m.team1.includes(playerToEdit.id) || m.team2.includes(playerToEdit.id)
+          )
+        : false;
 
     const handleAddSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -93,6 +102,7 @@ const PlayersPage: React.FC = () => {
                 alert("Attenzione: Esiste già un altro giocatore con questo nome e cognome!");
                 return;
             }
+            setEditSurnameError(null);
             setIsSubmitting(true);
             try {
                 await updatePlayerAndElo(playerToEdit.id, {
@@ -101,8 +111,14 @@ const PlayersPage: React.FC = () => {
                     position: editPosition,
                 }, newElo, editTournamentId || undefined);
                 setPlayerToEdit(null);
-            } catch (error) {
-                console.error("Failed to update player:", error);
+            } catch (error: any) {
+                // Show the server's Levenshtein error message inline instead of crashing
+                const msg = error?.message || String(error);
+                if (msg.includes('cognome') || msg.includes('20%') || msg.includes('limite')) {
+                    setEditSurnameError(msg);
+                } else {
+                    console.error("Failed to update player:", error);
+                }
             } finally {
                 setIsSubmitting(false);
             }
@@ -259,15 +275,27 @@ const PlayersPage: React.FC = () => {
                             />
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-center px-4 py-5">
-                            <label className="sm:w-1/3 text-sm font-medium text-ios-label-secondary mb-1 sm:mb-0">Cognome</label>
-                            <input
-                                type="text"
-                                placeholder="Inserisci il cognome"
-                                value={editSurname}
-                                onChange={(e) => setEditSurname(e.target.value)}
-                                className="sm:w-2/3 bg-transparent text-ios-label focus:outline-none"
-                                required
-                            />
+                            <label className="sm:w-1/3 text-sm font-medium text-ios-label-secondary mb-1 sm:mb-0">
+                                Cognome
+                                {playerHasMatches && (
+                                    <span className="ml-2 text-[10px] font-semibold text-ios-orange bg-orange-50 border border-orange-200 rounded px-1 py-0.5" title="Modifiche al cognome sono limitate al 20% per proteggere lo storico ELO">
+                                        🔒 protetto
+                                    </span>
+                                )}
+                            </label>
+                            <div className="sm:w-2/3 flex flex-col gap-1">
+                                <input
+                                    type="text"
+                                    placeholder="Inserisci il cognome"
+                                    value={editSurname}
+                                    onChange={(e) => { setEditSurname(e.target.value); setEditSurnameError(null); }}
+                                    className={`bg-transparent text-ios-label focus:outline-none w-full ${editSurnameError ? 'text-ios-red' : ''}`}
+                                    required
+                                />
+                                {editSurnameError && (
+                                    <p className="text-xs text-ios-red leading-snug">{editSurnameError}</p>
+                                )}
+                            </div>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:items-center px-4 py-5">
                             <label className="sm:w-1/3 text-sm font-medium text-ios-label-secondary mb-1 sm:mb-0">Posizione</label>
