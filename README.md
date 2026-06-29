@@ -327,6 +327,6 @@ utils/logger.js            logging
 
 ## Deploy
 
-Il progetto include `render.yaml` per deploy su Render.
+Il progetto utilizza Vercel per il deploy.
 
 Nota: il deploy reale usa `node server.js` come processo applicativo. Il backend serve API e asset buildati dal frontend.
