@@ -2825,7 +2825,7 @@ app.put('/api/team-tournaments/:tournamentId/teams/:teamId', async (req, res) =>
             SELECT sm.team1_players, sm.team2_players, m.team1_number, m.team2_number
             FROM team_tournament_matchday_matches sm
             JOIN team_tournament_matchdays m ON m.id = sm.matchday_id
-            WHERE m.team_tournament_root_id = ${tournamentId}
+            WHERE m.root_tournament_id = ${tournamentId}
               AND (m.team1_number = ${teamNumber} OR m.team2_number = ${teamNumber})
         `;
 
