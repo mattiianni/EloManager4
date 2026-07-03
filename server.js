@@ -2834,8 +2834,12 @@ app.put('/api/team-tournaments/:tournamentId/teams/:teamId', async (req, res) =>
             const playersList = row.team1_number === teamNumber ? row.team1_players : row.team2_players;
             if (Array.isArray(playersList)) {
                 for (const p of playersList) {
-                    if (p && p.name && p.surname) {
-                        playedPlayers.add(`${p.name.trim().toLowerCase()}|${p.surname.trim().toLowerCase()}`);
+                    if (p) {
+                        const pn = (p.name || '').trim().toLowerCase();
+                        const ps = (p.surname || '').trim().toLowerCase();
+                        if (pn || ps) {
+                            playedPlayers.add(`${pn}|${ps}`);
+                        }
                     }
                 }
             }
@@ -2843,8 +2847,12 @@ app.put('/api/team-tournaments/:tournamentId/teams/:teamId', async (req, res) =>
 
         for (let i = 0; i < currentPlayers.length; i++) {
             const orig = currentPlayers[i];
-            if (!orig || !orig.name || !orig.surname) continue;
-            const origKey = `${orig.name.trim().toLowerCase()}|${orig.surname.trim().toLowerCase()}`;
+            if (!orig) continue;
+            const origName = (orig.name || '').trim().toLowerCase();
+            const origSurname = (orig.surname || '').trim().toLowerCase();
+            if (!origName && !origSurname) continue;
+            
+            const origKey = `${origName}|${origSurname}`;
             
             if (playedPlayers.has(origKey)) {
                 const updated = normalizedPlayers[i];

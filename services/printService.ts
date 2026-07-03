@@ -2234,14 +2234,20 @@ export const printTeamTournamentMatchdayReport = (
         const t2Players = (sm.team2Players || []).map(p => `${p.name} ${p.surname}`.trim()).join(' & ');
         const sets = sm.sets;
         const scoreTextHtml = formatScoreBoxes(sets, false);
+        
+        const t1Won = sm.winner === 'team1';
+        const t2Won = sm.winner === 'team2';
+        const t1Weight = t1Won ? 'bold' : 'normal';
+        const t2Weight = t2Won ? 'bold' : 'normal';
+
         return `
             <tr style="height: 20px;">
                 <td style="text-align: center; width: 10%; font-size: 10px; padding: 3px 4px;">Partita ${idx + 1}</td>
-                <td style="width: 32%; text-align: right; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t1Players}</td>
+                <td style="width: 32%; text-align: right; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: ${t1Weight};">${t1Players}</td>
                 <td style="text-align: center; width: 26%; font-size: 11px; padding: 3px 4px; white-space: nowrap;">
                     ${scoreTextHtml}
                 </td>
-                <td style="width: 32%; text-align: left; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t2Players}</td>
+                <td style="width: 32%; text-align: left; font-size: 11px; padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: ${t2Weight};">${t2Players}</td>
             </tr>
         `;
     }).join('');
@@ -2249,10 +2255,10 @@ export const printTeamTournamentMatchdayReport = (
     const s = matchday.summary || null;
 	    const finalLine = s
 	        ? (() => {
-	            const t1w = getTeamTournamentScoreValue(s, 'team1Wins', config);
-	            const t2w = getTeamTournamentScoreValue(s, 'team2Wins', config);
-	            const t1p = t1w;
-	            const t2p = t2w;
+	            const t1w = Number.isFinite(Number(s.team1Wins)) ? Number(s.team1Wins) : '';
+	            const t2w = Number.isFinite(Number(s.team2Wins)) ? Number(s.team2Wins) : '';
+	            const t1p = getTeamTournamentScoreValue(s, 'team1Wins', config);
+	            const t2p = getTeamTournamentScoreValue(s, 'team2Wins', config);
 	            const t1g = Number.isFinite(Number(s.team1Games)) ? Number(s.team1Games) : '';
 	            const t2g = Number.isFinite(Number(s.team2Games)) ? Number(s.team2Games) : '';
 
@@ -2721,7 +2727,7 @@ export const printTeamTournamentReport = (
     const seenPairs = new Set<string>();
     const pairKey = (a: number, b: number) => `${Math.min(a, b)}-${Math.max(a, b)}`;
 
-	    const renderCompletedSubMatches = (md: TeamTournamentMatchday | null) => {
+	    const renderCompletedSubMatches = (md: TeamTournamentMatchday | null, swap: boolean = false) => {
 	        if (!md || md.status !== 'completed') return '';
 	        const visible = (md.subMatches || [])
 	            .filter(sm => !sm.cancelled)
@@ -2729,21 +2735,32 @@ export const printTeamTournamentReport = (
 
 	        if (visible.length === 0) return '';
 
-	        // Keep the overall fixture result readable; make sub-matches more compact.
 	        const rows = visible.map((sm, idx) => {
-	            const t1Players = (sm.team1Players || []).map(p => `${p.name} ${p.surname}`.trim()).join(' & ');
-	            const t2Players = (sm.team2Players || []).map(p => `${p.name} ${p.surname}`.trim()).join(' & ');
+	            const rawT1 = (sm.team1Players || []).map(p => `${p.name} ${p.surname}`.trim()).join(' & ');
+	            const rawT2 = (sm.team2Players || []).map(p => `${p.name} ${p.surname}`.trim()).join(' & ');
+                
+                const t1Players = swap ? rawT2 : rawT1;
+                const t2Players = swap ? rawT1 : rawT2;
+
 	            const sets = sm.sets || null;
-	            const scoreTextHtml = formatScoreBoxes(sets, false);
+                const swappedSets = swap ? (sets || []).map(s => ({...s, team1: s.team2, team2: s.team1})) : sets;
+	            const scoreTextHtml = formatScoreBoxes(swappedSets, false);
+
+                const t1Won = sm.winner === 'team1';
+                const t2Won = sm.winner === 'team2';
+                const leftWon = swap ? t2Won : t1Won;
+                const rightWon = swap ? t1Won : t2Won;
+                const t1Weight = leftWon ? 'bold' : 'normal';
+                const t2Weight = rightWon ? 'bold' : 'normal';
 
 	            return `
 	                <tr style="height: 18px;">
 	                    <td style="text-align: center; width: 10%; font-size: 9px; padding: 2px 4px;">Partita ${idx + 1}</td>
-	                    <td style="width: 32%; text-align: right; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t1Players}</td>
+	                    <td style="width: 32%; text-align: right; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: ${t1Weight};">${t1Players}</td>
 	                    <td style="text-align: center; width: 26%; font-size: 10px; padding: 2px 4px; white-space: nowrap;">
 	                        ${scoreTextHtml}
 	                    </td>
-	                    <td style="width: 32%; text-align: left; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${t2Players}</td>
+	                    <td style="width: 32%; text-align: left; font-size: 10px; padding: 2px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: ${t2Weight};">${t2Players}</td>
 	                </tr>
 	            `;
 	        }).join('');
@@ -2783,13 +2800,14 @@ export const printTeamTournamentReport = (
 	                ? (() => {
 	                    const swap = (md.team1Number !== m.team1Number);
 	                    const s = md.summary;
-	                    const t1w = getTeamTournamentScoreValue(s, swap ? 'team2Wins' : 'team1Wins', config);
-	                    const t2w = getTeamTournamentScoreValue(s, swap ? 'team1Wins' : 'team2Wins', config);
+	                    const t1w = Number.isFinite(Number(s[swap ? 'team2Wins' : 'team1Wins'])) ? Number(s[swap ? 'team2Wins' : 'team1Wins']) : '';
+	                    const t2w = Number.isFinite(Number(s[swap ? 'team1Wins' : 'team2Wins'])) ? Number(s[swap ? 'team1Wins' : 'team2Wins']) : '';
                     return `<div style="display: inline-flex; align-items: center; justify-content: center;"><span style="background-color: #FF9500; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t1w}</span><span style="margin: 0 4px; font-weight: bold; color: #4b5563;">-</span><span style="background-color: #FF9500; color: white; padding: 4px 8px; font-weight: 900; font-size: 12px; display: inline-block; line-height: 1; border-radius: 3px; min-width: 20px; text-align: center;">${t2w}</span></div>`;
 	                })()
 	                : '';
 
-            const subTable = renderCompletedSubMatches(md);
+            const isSwapped = md ? (md.team1Number !== m.team1Number) : false;
+            const subTable = renderCompletedSubMatches(md, isSwapped);
             const dateChip = (md?.status === 'completed' && md?.date)
                 ? `<span style="margin-left: 8px; font-size: 10px; color:#6b7280; font-weight: 600;">${new Date(md.date).toLocaleDateString('it-IT').replace(/\//g, '.')}</span>`
                 : '';

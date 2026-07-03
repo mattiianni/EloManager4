@@ -165,10 +165,10 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
     };
 
     return (
-        <div className="py-4 space-y-6">
+        <div className="py-2 space-y-4">
             
-            {/* KPI Grid */}
-            <div className="grid grid-cols-2 gap-4 px-4 md:grid-cols-4">
+            {/* INTESTAZIONE KPI */}
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                 {[
                     { label: 'Giocatori', value: stats.activePlayers, icon: 'person.2.fill', color: 'var(--ios-systemBlue)' },
                     { label: 'Partite', value: stats.totalMatches, icon: 'sportscourt', color: 'var(--ios-systemGreen)' },
@@ -185,8 +185,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                 ))}
             </div>
 
-            {/* Top 5 Giocatori */}
-            <div className="px-4">
+            {/* SEZIONE TOP 5 */}
+            <div className="">
                 <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800 shadow-sm">
                     <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
                         <span className="font-bold text-gray-900 dark:text-white">Top 5 Giocatori</span>
@@ -219,8 +219,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                 </div>
             </div>
 
-            {/* Ultima Giornata */}
-            <div className="px-4">
+            {/* SEZIONE ULTIMA GIORNATA */}
+            <div className="">
                 <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800 shadow-sm">
                     <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700 font-bold text-gray-900 dark:text-white">Ultima Giornata</div>
                     <div className="divide-y divide-gray-100 dark:divide-gray-700">
@@ -252,8 +252,8 @@ const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigateToTournaments }
                 </div>
             </div>
 
-            {/* Attività Recenti */}
-            <div className="px-4">
+            {/* Ultime Partite */}
+            <div className="">
                 <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800 shadow-sm">
                     <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700 font-bold text-gray-900 dark:text-white">Ultime Partite</div>
                     <div className="divide-y divide-gray-100 dark:divide-gray-700">

@@ -667,10 +667,12 @@ const DrawPage: React.FC<DrawPageProps> = ({
     const checkPlayerPlayed = (index: number) => {
         if (!teamTournamentTeamToEdit) return false;
         const originalPlayer = teamTournamentTeamToEdit.players[index];
-        if (!originalPlayer || (!originalPlayer.name && !originalPlayer.surname)) return false;
+        if (!originalPlayer) return false;
+        
+        const name = (originalPlayer.name || '').trim().toLowerCase();
+        const surname = (originalPlayer.surname || '').trim().toLowerCase();
+        if (!name && !surname) return false;
 
-        const name = originalPlayer.name.trim().toLowerCase();
-        const surname = originalPlayer.surname.trim().toLowerCase();
         const teamNumber = teamTournamentTeamToEdit.teamNumber;
 
         for (const md of teamTournamentMatchdays) {
@@ -679,7 +681,11 @@ const DrawPage: React.FC<DrawPageProps> = ({
             for (const sm of (md.subMatches || [])) {
                 const players = md.team1Number === teamNumber ? sm.team1Players : sm.team2Players;
                 if (!players) continue;
-                if (players.some(p => p.name.trim().toLowerCase() === name && p.surname.trim().toLowerCase() === surname)) {
+                if (players.some(p => {
+                    const pn = (p.name || '').trim().toLowerCase();
+                    const ps = (p.surname || '').trim().toLowerCase();
+                    return pn === name && ps === surname;
+                })) {
                     return true;
                 }
             }

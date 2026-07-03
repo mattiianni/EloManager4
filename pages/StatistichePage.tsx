@@ -282,7 +282,25 @@ const StatistichePage: React.FC = () => {
         const playedRoundRobin = rrPlayedMatchdays.length;
 
         const playerKey = (p: { name: string; surname: string }) => `${p.name}`.trim().toLowerCase() + '|' + `${p.surname}`.trim().toLowerCase();
-        const displayName = (p: { name: string; surname: string }) => `${p.name} ${p.surname}`.trim();
+        
+        // Map players to team names
+        const teamNameByPlayerKey = new Map<string, string>();
+        const teams = teamTournamentTeamsByRoot[selectedTeamTournamentRootId] || [];
+        teams.forEach(team => {
+            if (Array.isArray(team.players)) {
+                team.players.forEach(p => {
+                    if (p && (p.name || p.surname)) {
+                        teamNameByPlayerKey.set(playerKey(p), team.name);
+                    }
+                });
+            }
+        });
+
+        const displayName = (p: { name: string; surname: string }) => {
+            const base = `${p.name} ${p.surname}`.trim();
+            const teamName = teamNameByPlayerKey.get(playerKey(p));
+            return teamName ? `${base} (${teamName})` : base;
+        };
 
         const isBlankSets = (sets: any[] | null) => {
             if (!sets || sets.length === 0) return true;
@@ -1251,7 +1269,7 @@ const StatistichePage: React.FC = () => {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4">
             {/* Tournament Filter */}
             <Card>
                 <div>
