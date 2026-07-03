@@ -55,8 +55,8 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, theme, toggleTheme }) =>
             </div>
 
             {/* Right Actions */}
-            <div className="flex flex-1 justify-end items-end md:items-center flex-col md:flex-row gap-1.5 md:gap-3">
-                <div className="scale-75 origin-right md:scale-100 -mb-1 md:mb-0">
+            <div className="flex flex-1 justify-end items-center flex-row gap-2 md:gap-3">
+                <div className="scale-75 origin-right md:scale-100">
                     <ThemeToggle theme={theme} onToggle={toggleTheme} />
                 </div>
                 <button

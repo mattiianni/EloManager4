@@ -1292,6 +1292,17 @@ const DrawPage: React.FC<DrawPageProps> = ({
                                 </div>
                                 );
                             })}
+                            
+                            <div className="pt-2 flex justify-center">
+                                <button
+                                    type="button"
+                                    onClick={() => setEditTeamPlayers(prev => [...prev, { name: '', surname: '' }])}
+                                    className="flex items-center space-x-2 text-sm font-medium text-ios-blue hover:text-ios-blue/80 active:opacity-70 transition-colors"
+                                >
+                                    <span className="material-symbols-outlined text-[20px]">add_circle</span>
+                                    <span>Aggiungi Giocatore (9+)</span>
+                                </button>
+                            </div>
                         </div>
 
                         {error && <p className="text-red-500 dark:text-red-400 text-sm">{error}</p>}

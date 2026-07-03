@@ -2858,15 +2858,16 @@ app.put('/api/team-tournaments/:tournamentId/teams/:teamId', async (req, res) =>
                 const updated = normalizedPlayers[i];
                 if (!updated) continue;
 
-                const oldSurnameT = orig.surname.trim().toLowerCase();
-                const newSurnameT = updated.surname.trim().toLowerCase();
+                const oldSurnameT = origSurname; // already defined above and safe
+                const newSurnameT = (updated.surname || '').trim().toLowerCase();
 
                 // Nome: sempre modificabile liberamente
                 // Cognome: Levenshtein 20% con salvacondotto <= 2 caratteri
                 if (newSurnameT !== oldSurnameT) {
                     const dist = levenshtein(oldSurnameT, newSurnameT);
-                    const maxLen = Math.max(orig.surname.trim().length, updated.surname.trim().length);
-                    const changeRatio = dist / maxLen;
+                    const origSurnameLen = (orig.surname || '').trim().length;
+                    const maxLen = Math.max(origSurnameLen, updated.surname.trim().length);
+                    const changeRatio = maxLen > 0 ? dist / maxLen : 0;
                     if (dist > 2 && changeRatio > 0.20) {
                         return res.status(400).json({
                             message: `Il cognome di ${orig.name} ${orig.surname} non può essere modificato radicalmente (variazione: ${Math.round(changeRatio * 100)}%, distanza: ${dist} caratteri). Solo correzioni ortografiche minori sono consentite.`,
