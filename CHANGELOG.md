@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.1.12 — 2026-07-08
+### Modifiche Algoritmo ELO, UI & Stampa
+- Ricalibrata la formula di conversione ELO -> Livello Playtomic su base matematica lineare (300 ELO = 1 Livello).
+- Risolto un bug di visualizzazione nelle stampe PDF da iPhone che causava un ingrandimento anomalo del testo, imponendo una fixed viewport e disabilitando il text-inflation di Safari.
+- Risolto un bug grafico nel form di calibrazione livello Playtomic in cui compariva il testo `_AND_RIGHT` anziché l'icona direzionale.
+- Rimosso l'effetto "scatola nella scatola" nella pagina di completamento giornata nei tornei a squadre, adottando nativamente componenti edge-to-edge iOS HIG.
+
 ## v4.1.11 — 2026-06-27
 ### Modifiche Algoritmo ELO & UI
 - Risolto errore matematico di arrotondamento `Math.round()` che azzerava i decimali nel calcolo dei delta ELO, ripristinando la precisione decimale fluttuante cronologica partita per partita.
