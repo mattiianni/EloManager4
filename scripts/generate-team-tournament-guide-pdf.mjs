@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import PDFDocument from 'pdfkit';
 
-const APP_VERSION = '4.1.12';
+const APP_VERSION = '4.1.13';
 const APP_MONTH = 'Lug 2026';
 
 const outDir = path.resolve(process.cwd(), 'docs');

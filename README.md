@@ -18,7 +18,7 @@ I file `pages/_app.tsx`, `pages/_document.tsx`, `pages/index.tsx` e `next.config
 ## Routine release
 
 - Versione corrente: `4.1.11`
-- Dalla release successiva si incrementa la patch: `4.1.11`, `4.1.12`, ...
+- Dalla release successiva si incrementa la patch: `4.1.11`, `4.1.13`, ...
 - Quando cambia il mese reale, si aggiorna anche il mese visibile nei riferimenti applicativi e documentali (`Gen`, `Feb`, `Mar`, `Apr`, `Mag`, `Giu`, ...).
 - Ad ogni release vanno aggiornati i riferimenti versione nell'app, la documentazione `.md`, il `README`, il backup `.zip` e il dump completo `.txt` del codice.
 

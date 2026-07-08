@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.1.13
+- Mostrati i punteggi per singolo set anziché il totale games in Dashboard e Profilo Giocatore
+- Aggiunta validazione (minimo 2 lettere per nome e cognome) in creazione e modifica giocatore
+- Rimossi giocatori senza nome dal database di produzione
+- Fixati dettagli minori nella visualizzazione dei tabelloni
+
 ## v4.1.12 — 2026-07-08
 ### Modifiche Algoritmo ELO, UI & Stampa
 - Ricalibrata la formula di conversione ELO -> Livello Playtomic su base matematica lineare (300 ELO = 1 Livello).
