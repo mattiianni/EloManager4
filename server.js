@@ -1809,6 +1809,9 @@ app.put('/api/matches', async (req, res) => {
             
             logger.match('update', matchId, { winner, team1Games, team2Games });
         }
+        if (name.trim().length < 2 || surname.trim().length < 2) {
+            return res.status(400).json({ message: 'Nome e cognome devono avere almeno 2 caratteri' });
+        }
         
         logger.info('Partite aggiornate con successo', { count: matchUpdates.length });
         res.json({ message: 'Partite aggiornate con successo' });
@@ -1854,6 +1857,9 @@ app.delete('/api/matches', async (req, res) => {
                 SET current_elo = ${newElo}
                 WHERE id = ${history.player_id} AND workspace_id = ${req.workspaceId}
             `;
+        }
+        if (name.trim().length < 2 || surname.trim().length < 2) {
+            return res.status(400).json({ message: 'Nome e cognome devono avere almeno 2 caratteri' });
         }
 
         // Delete ELO history associated with this match
