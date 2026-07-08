@@ -39,14 +39,14 @@ export const HIGListSection: React.FC<HIGListSectionProps> = ({ header, footer, 
   });
 
   return (
-    <div className="hig-list-section" style={{ marginBottom: '35px' }}>
+    <div className="hig-list-section" style={{ marginBottom: '24px' }}>
       {header && (
         <div
           style={{
             font: '400 13px/18px -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
             color: 'var(--ios-secondaryLabel)',
             textTransform: 'uppercase',
-            padding: '8px 20px 6px',
+            padding: '6px 20px 4px',
             letterSpacing: '0.02em',
           }}
         >
@@ -70,7 +70,7 @@ export const HIGListSection: React.FC<HIGListSectionProps> = ({ header, footer, 
           style={{
             font: '400 13px/18px -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
             color: 'var(--ios-secondaryLabel)',
-            padding: '6px 20px 8px',
+            padding: '4px 20px 6px',
           }}
         >
           {footer}

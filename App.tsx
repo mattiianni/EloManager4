@@ -245,7 +245,7 @@ const App: React.FC = () => {
                         theme={theme}
                         toggleTheme={toggleTheme}
                     />
-                    <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto px-2 pt-2 pb-[calc(49px+env(safe-area-inset-bottom)+16px)] md:p-6 md:pb-6 lg:p-8 lg:pb-8">
+                    <main className="min-h-0 flex-1 overflow-x-hidden overflow-y-auto pt-2 pb-[calc(49px+env(safe-area-inset-bottom)+8px)] md:px-6 md:pt-4 md:pb-6 lg:px-8 lg:pb-8">
                         <div className="fade-in mx-auto w-full max-w-[1600px]">
                             {renderPage()}
                         </div>

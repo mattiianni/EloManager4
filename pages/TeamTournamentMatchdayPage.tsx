@@ -895,11 +895,11 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
     const renderResults = () => {
         if (!matchday) {
             return (
-                <div className="max-w-4xl mx-auto">
-                    <Card title="Inserisci risultati">
-                        <p className="text-gray-500 dark:text-gray-400">Caricamento giornata...</p>
-                    </Card>
-                </div>
+            <div>
+                <Card title="Inserisci risultati">
+                    <p className="text-gray-500 dark:text-gray-400">Caricamento giornata...</p>
+                </Card>
+            </div>
             );
         }
 
@@ -912,10 +912,10 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
         const activeFixture = fixtures.find(f => f.tournamentDayId === matchday.tournamentDayId) || null;
 
         return (
-            <div className="max-w-4xl mx-auto space-y-4">
+            <div className="max-w-4xl mx-auto mb-8">
                 <Card title="Inserisci risultati">
-                    <div className="space-y-4">
-                        <div className="relative rounded-lg bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 p-4">
+                    <div className="flex flex-col">
+                        <div className="relative p-4 border-b border-[var(--ios-separator)]">
                             <div className="text-center">
                                 <div className="text-sm text-gray-500 dark:text-white">
                                     {new Date(matchday.date).toLocaleDateString('it-IT')}
@@ -944,21 +944,21 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                         </div>
 
                         {resultsLocked && (
-                            <div className="rounded-lg bg-orange-50 dark:bg-orange-900 border border-orange-300/55 dark:border-orange-300/18 p-4">
+                            <div className="bg-orange-50 dark:bg-orange-900/30 p-4 border-b border-[var(--ios-separator)]">
                                 <div className="text-sm text-orange-800 dark:text-orange-200 font-semibold text-center">
                                     Prima di inserire risultati devi completare entrambe le squadre con tutti i giocatori previsti.
                                 </div>
                             </div>
                         )}
 
-                        <div className="space-y-3">
+                        <div className="divide-y divide-[var(--ios-separator)]">
                             {matchday.subMatches.map((sm, idx) => {
                                 const isCancelled = cancelledByIndex[sm.matchIndex];
                                 const editSel = editSubMatchSelections[idx] || { team1: ['', ''], team2: ['', ''] };
                                 
                                 if (isCancelled) {
                                     return (
-                                        <div key={sm.matchIndex} className="p-3 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-3">
+                                        <div key={sm.matchIndex} className="p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
                                             <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
                                                 Partita {sm.matchIndex} cancellata
                                             </span>
@@ -986,11 +986,11 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                                 const localUsed2 = new Set(editSel.team2.filter(Boolean));
 
                                 return (
-                                <div key={sm.matchIndex} className="space-y-2">
-                                    <div className="text-xs text-gray-500 dark:text-gray-400 text-center">
+                                <div key={sm.matchIndex} className="py-4 px-2 space-y-3">
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 text-center uppercase tracking-wider font-semibold">
                                         Partita {sm.matchIndex} di {matchday.matchesPerDay}
                                     </div>
-                                    <div className="relative grid grid-cols-1 sm:grid-cols-3 items-center gap-2 bg-white dark:bg-gray-800 p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+                                    <div className="relative grid grid-cols-1 sm:grid-cols-3 items-center gap-4">
                                         <button
                                             type="button"
                                             onClick={() => {
@@ -1000,7 +1000,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                                                 }
                                             }}
                                             disabled={isSavingResults || loading || resultsLocked}
-                                            className={`absolute top-2 right-2 h-6 w-6 rounded-full text-xs font-bold border bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700`}
+                                            className={`absolute -top-1 -right-1 h-6 w-6 rounded-full text-xs font-bold border bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700`}
                                             title="Annulla partita"
                                             aria-label="Cancel sub match"
                                         >
@@ -1022,7 +1022,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                                                                 return next;
                                                             }));
                                                         }}
-                                                        className="block w-full sm:max-w-[150px] sm:ml-auto bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-1.5 px-2 focus:outline-none focus:ring-sky-500 focus:border-sky-500 text-xs sm:text-sm"
+                                                        className="block w-full sm:max-w-[150px] sm:ml-auto bg-ios-fill dark:bg-gray-700 border-none rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-ios-blue text-sm"
                                                         disabled={isSavingResults || loading || resultsLocked}
                                                     >
                                                         <option value="">Giocatore</option>
@@ -1062,7 +1062,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                                                                 return next;
                                                             }));
                                                         }}
-                                                        className="block w-full sm:max-w-[150px] sm:mr-auto bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm py-1.5 px-2 focus:outline-none focus:ring-sky-500 focus:border-sky-500 text-xs sm:text-sm"
+                                                        className="block w-full sm:max-w-[150px] sm:mr-auto bg-ios-fill dark:bg-gray-700 border-none rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-ios-blue text-sm"
                                                         disabled={isSavingResults || loading || resultsLocked}
                                                     >
                                                         <option value="">Giocatore</option>
@@ -1085,9 +1085,9 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
                             })}
                         </div>
 
-                        {error && <p className="text-sm text-red-500 dark:text-red-400">{error}</p>}
+                        {error && <p className="text-sm text-red-500 dark:text-red-400 p-4">{error}</p>}
 
-                        <div className="flex flex-col gap-2 pt-2 sm:flex-row sm:items-stretch sm:justify-between">
+                        <div className="flex flex-col gap-2 p-4 sm:flex-row sm:items-stretch sm:justify-between border-t border-[var(--ios-separator)]">
                             <Button
                                 variant="secondary"
                                 type="button"
@@ -1164,7 +1164,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
 
     if (!resolvedRootId && !tournamentDayId) {
         return (
-            <div className="max-w-3xl mx-auto">
+            <div>
                 <Card title="Torneo a squadre">
                     <p className="text-gray-500 dark:text-gray-400">Nessun torneo selezionato.</p>
                     <div className="pt-4">
@@ -1177,7 +1177,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
 
     if (loading && mode === 'create' && teams.length === 0) {
         return (
-            <div className="max-w-3xl mx-auto">
+            <div>
                 <Card title="Caricamento...">
                     <p className="text-gray-500 dark:text-gray-400">Sto caricando configurazione e squadre.</p>
                 </Card>
@@ -1188,7 +1188,7 @@ const TeamTournamentMatchdayPage: React.FC<TeamTournamentMatchdayPageProps> = ({
     // Guard: only configured team tournaments
     if (rootTournament && rootTournament.type === TournamentType.TorneoASquadre && rootTournament.teamTournamentConfigCompleted === false) {
         return (
-            <div className="max-w-3xl mx-auto">
+            <div>
                 <Card title="Torneo a squadre">
                     <p className="text-gray-500 dark:text-gray-400">Completa prima la configurazione del torneo a squadre.</p>
                     <div className="pt-4">

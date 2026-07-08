@@ -18,14 +18,14 @@ const Card: React.FC<CardProps> = ({ children, className = '', title, bodyClassN
                             font: '400 13px/18px -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif',
                             color: 'var(--ios-secondaryLabel)',
                             textTransform: 'uppercase',
-                            padding: '8px 12px 6px',
+                            padding: '6px 20px 4px',
                             letterSpacing: '0.02em',
                         }}
                     >
                         {title}
                     </div>
                 ) : (
-                    <div className="px-3 py-2 md:px-5">
+                    <div className="px-5 py-2">
                         {title}
                     </div>
                 )
@@ -38,11 +38,10 @@ const Card: React.FC<CardProps> = ({ children, className = '', title, bodyClassN
                         background: 'var(--ios-secondarySystemGroupedBackground)',
                         borderRadius: '10px',
                         overflow: 'hidden',
-                        margin: '0 8px',
-                        boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+                        margin: '0 16px',
                     }}
                 >
-                    <div className="p-3 md:p-5">
+                    <div className="p-3 md:p-4">
                         {children}
                     </div>
                 </div>

@@ -89,6 +89,7 @@ const SF_TO_MATERIAL: Record<string, string> = {
   'arrow.left': 'arrow_back',
   'arrow.right': 'arrow_forward',
   'arrow.right.circle': 'arrow_circle_right',
+  'arrow.left.and.right': 'sync_alt',
 
   // Info & status
   'info.circle': 'info',

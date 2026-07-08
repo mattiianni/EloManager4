@@ -33,12 +33,16 @@ const getPrintStyles = (fontImport: boolean = false) => `
                 color: #1c1c1e; 
                 font-size: 11px;
                 background-color: #f2f2f7;
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%;
             }
         }
         @media print {
             body { 
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact; 
+                -webkit-text-size-adjust: 100% !important;
+                text-size-adjust: 100% !important;
                 font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
                 color: #000000;
             }
@@ -222,6 +226,7 @@ const openPrintWindow = (title: string, content: string, pageStyles = "", existi
             <!DOCTYPE html>
             <html>
             <head>
+                <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
                 <title>${title}</title>
                 <style>@page { size: A4; margin: 12mm 10mm; } ${pageStyles}</style>
                 ${getPrintStyles()}
@@ -412,6 +417,7 @@ export const printChart = (chartContainerId: string): boolean => {
         <!DOCTYPE html>
         <html>
         <head>
+            <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
             <title>Grafico Andamento Storico ELO</title>
             ${getPrintStyles(true)}
             <style>${pageStyles}</style>
@@ -585,6 +591,7 @@ export const printEloChart = (
 
     const fullHtml = `<!DOCTYPE html><html>
 <head>
+    <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Grafico Andamento Storico ELO</title>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -4994,6 +5001,7 @@ export const printTournamentStatistics = (stats: any) => {
         <!DOCTYPE html>
         <html>
         <head>
+            <meta name="viewport" content="width=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
             <title>Statistiche - ${stats.tournament.name}</title>
             <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
             <style>@page { size: A4; margin: 10mm; }</style>

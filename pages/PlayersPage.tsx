@@ -8,6 +8,7 @@ import { HIGSheet } from '../components/ui/HIGSheet.tsx';
 import HIGSegmentedControl from '../components/ui/HIGSegmentedControl.tsx';
 import PlayerProfileModal from '../components/PlayerProfileModal.tsx';
 import { printPlayerProfiles } from '../services/printService.ts';
+import EloPlaytomicInput from '../components/EloPlaytomicInput.tsx';
 
 const PlayersPage: React.FC = () => {
     const { players, matches, tournaments, eloHistory, addPlayer, deletePlayer, updatePlayerAndElo, loading } = usePadelStore();
@@ -137,7 +138,7 @@ const PlayersPage: React.FC = () => {
         <HIGList className="py-4">
             
             {/* Header Actions */}
-            <div className="px-4 mb-4 flex flex-col sm:flex-row gap-3 justify-between items-center">
+            <div style={{ padding: '0 16px', marginBottom: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }} className="sm:flex-row sm:justify-between sm:items-center">
                 <HIGSegmentedControl 
                     segments={sortOptions}
                     selectedIndex={sortIndex}
@@ -312,15 +313,10 @@ const PlayersPage: React.FC = () => {
                     </div>
 
                     <HIGListSection header="Impostazioni ELO">
-                        <div className="px-4 py-2 border-b" style={{ borderColor: 'var(--ios-separator)' }}>
-                            <label className="text-xs text-ios-label-secondary mb-1 block">ELO Attuale</label>
-                            <input
-                                type="number"
-                                step="0.01"
-                                value={editElo}
-                                onChange={(e) => setEditElo(e.target.value)}
-                                className="w-full bg-transparent text-ios-label font-semibold focus:outline-none"
-                                required
+                        <div className="px-4 py-4 border-b" style={{ borderColor: 'var(--ios-separator)' }}>
+                            <EloPlaytomicInput
+                                elo={parseFloat(editElo) || 0}
+                                onEloChange={(elo) => setEditElo(elo.toString())}
                             />
                         </div>
                         {parseFloat(editElo) !== playerToEdit?.currentElo && (
